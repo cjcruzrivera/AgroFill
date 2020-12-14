@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block extraCss %}
+<link rel="stylesheet" href="{{url_for('static', filename='assets/css/login_styles.css')}}">
+{% endblock %}
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block typeContainer %}
+<div class="container-fluid" style="padding-left: 0px;">
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center h-100">
+        <div class="card" style="margin-top: 5%;">
+            <div class="card-header">
+                <div class="d-flex justify-content-center">
+                    <img class="logo" src="{{url_for('static', filename='images/logo.jpeg')}}" alt="">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <h3>Registro</h3>
+                </div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}.Ir a <a href="{{ url_for('auth.login') }}">Página de Ingreso</a>.
+                </div>
+                {% endfor %}
+
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/signup" class="needs-validation" novalidate>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input name="email" type="email" class="form-control" placeholder="Email del usuario" required>
+                        <div class="alert alert-danger invalid-feedback" style="margin-bottom: 0px !important;">
+                            Por favor ingrese un email valido
+                        </div>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input name="username" type="text" class="form-control" placeholder="Nombre de usuario"
+                            required>
+                        <div class="alert alert-danger invalid-feedback" style="margin-bottom: 0px !important;">
+                            Por favor ingrese un nombre de usuario valido
+                        </div>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input name="password" type="password" class="form-control" minlength="8"
+                            placeholder="Contraseña" required>
+                        <div class="alert alert-danger invalid-feedback" style="margin-bottom: 0px !important;">
+                            La contraseña debe contar con al menos 8 caracteres
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <a href="{{url_for('auth.login')}}" class="btn float-right btn-danger">Cancelar</a>
+                        <input type="submit" value="Guardar Registro" class="btn  float-right btn-info">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

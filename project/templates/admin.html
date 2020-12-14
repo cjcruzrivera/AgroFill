@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block extraCss %}
+<link rel="stylesheet" href="/static/assets/css/Ultimate-Sidebar-Menu.css">
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+    crossorigin="anonymous" />
+
+{% endblock %}
+
+{% block content %}
+<h1 class="mt-4">Administración</h1>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Usuarios registrados
+    </div>
+    <div class="card-body">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}.
+        </div>
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Historial</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if usuarios %}
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{usuario.name}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td><a href="historial/{{usuario.id}}"><i class="fas fa-eye"></i> Ver</a></td>
+                        <td><a href="#" onclick="deleteUser({{usuario.id}}, '{{usuario.name}}')"><i class="fas fa-trash"></i> Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extraJs %}
+{% if not isAdmin %}
+<script>
+    var notAdmin = true;
+</script>
+{% else %}
+<script>
+    var notAdmin = false;
+</script>
+{% endif %}
+
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+<script src="/static/assets/js/admin.js"></script>
+{% endblock %}

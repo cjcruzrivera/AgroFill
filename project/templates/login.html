@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block extraCss %}
+<link rel="stylesheet" href="{{url_for('static', filename='assets/css/login_styles.css')}}">
+{% endblock %}
+
+{% block navbar %}
+
+{% endblock %}
+{% block typeContainer %}
+<div class="container-fluid" style="padding-left: 0px;">
+{% endblock %}
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <div class="card" style="margin-top: 5%;">
+            <div class="card-header">
+                <div class="d-flex justify-content-center">
+                    <img class="logo" src="{{url_for('static', filename='images/logo.jpeg')}}" alt="">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <h3>Ingresar</h3>
+                </div>
+                <!-- <div class="d-flex justify-content-end social_icon">
+                <span><i class="fab fa-facebook-square"></i></span>
+                <span><i class="fab fa-google-plus-square"></i></span>
+                <span><i class="fab fa-twitter-square"></i></span>
+            </div> -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {% if message == 'Please log in to access this page.' %}
+                        Por favor ingrese para acceder a esta pantalla
+                    {% else %}
+                    {{ message }}.
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/login" class="needs-validation" novalidate>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input name="email" type="text" class="form-control" placeholder="Email del usuario" required>
+                        <div class="alert alert-danger invalid-feedback" style="margin-bottom: 0px !important;">
+                            Por favor ingrese un email válido
+                        </div>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input name="password" type="password" class="form-control" placeholder="Contraseña" required>
+                        <div class="alert alert-danger invalid-feedback" style="margin-bottom: 0px !important;">
+                            Por favor ingrese la contraseña
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Login" class="btn float-right login_btn">
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center links">
+                    ¿No tienes cuenta?<a class="links" href="{{url_for('auth.signup')}}">Regístrate</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a class="links" href="/inicio">O puedes ingresar sin registro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

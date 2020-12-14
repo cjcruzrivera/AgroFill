@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>AgroFill</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="icon" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/assets/css/styles.css">
+
+    {% block extraCss %}
+    <link rel="stylesheet" href="/static/assets/css/Ultimate-Sidebar-Menu.css">
+
+    {% endblock %}
+
+</head>
+
+<body class="sb-nav-fixed" style="font-size: 17px;">
+    {% block navbar %}
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">
+                            <a class="navbar-brand text-center text-white" href='{{url_for("main.index")}}'
+                                style="font-family: Lato, sans-serif;color: #ffffff;text-align: center;">
+                                <div class="d-flex justify-content-center">
+                                    <img class="logo" src="{{url_for('static', filename='images/logo.jpeg')}}" alt="">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sb-sidenav-menu-heading"><a class="a-nostyle" href='{{url_for("main.index")}}'><i
+                                    class="fas fa-home"></i> Menu</a></div>
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts"
+                            aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-calculator"></i></div>
+                            Calculos
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/vertedero">Vertedero cresta larga</a>
+                                <a class="nav-link" href="/partidor">Partidor proporcional</a>
+                            </nav>
+                        </div>
+                        {% if current_user.is_authenticated %}
+
+                        <a class="nav-link" href="/historial/{{current_user.id}}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-history"></i></div>
+                            Historial
+                        </a>
+                        {% endif %}
+                        {% if current_user.isAdmin %}
+                        <a class="nav-link" href="{{ url_for('main.admin') }}"
+                            style="font-family: Lato, sans-serif;color: #ffffff;">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
+                            Administración
+                        </a>
+
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="sb-sidenav-footer" style="font-size: 15px;">
+                    <a style="font-family: Lato, sans-serif;color: #ffffff;" href="{{ url_for('main.profile') }}"
+                        class="nav-link">
+                        <i class="fas fa-user"></i>
+                        Usuario: <br>
+                        {% if current_user.is_authenticated %}
+                        {{current_user.name}}
+                        {% else %}
+                        No registrado
+                        {% endif %}
+                    </a>
+                    {% if current_user.is_authenticated %}
+                    <a style="font-family: Lato, sans-serif;color: #ffffff;" href="{{ url_for('auth.logout') }}"
+                        class="nav-link">
+                        {% else %}
+                        <a style="font-family: Lato, sans-serif;color: #ffffff;" href="{{ url_for('auth.login') }}"
+                        class="nav-link">
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                        <i class="fas fa-sign-out-alt"></i>
+                        Salir
+                        {% else %}
+                        <i class="fas fa-sign-in-alt"></i>
+                        Ingresar
+                        {% endif %}
+                    </a>
+
+                    <!-- <div class="small">Usuario:</div>
+                    {% if current_user.is_authenticated %}
+                    {{current_user.name}}
+                    <a
+                    class="nav-link text-white" href='{{url_for("auth.logout")}}'
+                    style="font-family: Lato, sans-serif;color: #ffffff;">Salir</a>
+                    {% endif %} -->
+                </div>
+            </nav>
+        </div>
+        <!-- TODO: IMPLEMENTAR UN SIDEBAR DECENTE (el q puso luis no es responsive ademas de mal estructurado) -->
+        <!-- <div class="sidebar" style="background: #0278ae;">
+        <div class="text-center border-light shadow-sm brand"><a class="navbar-brand text-center text-white"
+                href='{{url_for("main.index")}}'
+                style="font-family: Lato, sans-serif;color: #ffffff;text-align: center;">
+                <div class="d-flex justify-content-center">
+                    <img class="logo" src="{{url_for('static', filename='images/logo.jpeg')}}" alt="">
+                </div>
+            </a></div>
+        <nav class="navbar navbar-dark navbar-expand text-center align-items-center align-content-center align-self-center"
+            style="text-align: center;font-family: Lato, sans-serif;">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav text-center flex-fill align-items-center align-content-center align-self-center mr-auto flex-column mr-auto"
+                    style="text-align: center;">
+                    <li class="nav-item text-center text-white border rounded shadow"
+                        style="text-align: center;margin: 2px;"><a class="nav-link text-center text-white"
+                            href="page2.html"
+                            style="font-family: Lato, sans-serif;color: fff;text-align: center;margin: 2px;width: 170px;">Vertedero de cresta larga</a>
+                    </li>
+                    <li class="nav-item text-center text-white border rounded shadow"
+                        style="text-align: center;margin: 2px;"><a class="nav-link text-center text-white"
+                            href="page2.html"
+                            style="font-family: Lato, sans-serif;color: fff;text-align: center;margin: 2px;width: 170px;">Partidor proporcional</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+
+                    <li class="nav-item text-center text-white border rounded shadow"
+                        style="text-align: center;margin: 2px;"><a class="nav-link text-center text-white"
+                            href="page2.html"
+                            style="font-family: Lato, sans-serif;color: fff;text-align: center;margin: 2px;width: 170px;">Historial</a>
+                    </li>
+                    {% if current_user.isAdmin %}
+                    <li class="nav-item text-center text-white border rounded shadow"
+                        style="text-align: center;margin: 2px;"><a class="nav-link text-center text-white"
+                            href="{{ url_for('main.admin') }}"
+                            style="font-family: Lato, sans-serif;color: #ffffff;text-align: center;margin: 2px;width: 170px;">Administración</a>
+                    </li>
+                    {% endif %}
+                    
+                    
+                    {% endif %}
+
+                    <li class="nav-item text-center text-white border rounded shadow"
+                        style="text-align: center;margin: 2px;"></li>
+                </ul>
+            </div>
+        </nav> -->
+        <!-- {% if current_user.is_authenticated %}
+
+        <ul class="nav flex-column text-center flex-fill align-items-center align-content-center align-self-center mr-auto flex-column mr-auto"
+            style="text-align: center;">
+            <li class="nav-item text-center"></li>
+            <li class="nav-item text-center"></li>
+            <li class="nav-item text-center"></li>
+            <li class="nav-item text-center"></li>
+            <li class="nav-item text-center border rounded shadow" style="text-align: center;margin: 2px;width: 170px;">
+            </li>
+            <li class="nav-item text-center text-white border rounded shadow" style="text-align: center;margin: 2px;">
+            </li>
+            <li class="nav-item text-center text-white border rounded shadow" style="text-align: center;margin: 2px;"><a
+                    class="nav-link text-center text-white" href='{{url_for("auth.logout")}}'
+                    style="font-family: Lato, sans-serif;color: #ffffff;text-align: center;margin: 2px;width: 170px;">Salir</a>
+            </li>
+        </ul>
+        {% endif %} -->
+
+        {% endblock %}
+        <div id="layoutSidenav_content">
+            <main>
+                <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+                {% block typeContainer %}
+
+                <div class="container-fluid">
+                    {% endblock %}
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </main>
+            {% block footer %}
+
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid" id="container">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; AgroFill 2020</div>
+                        <!-- <div>
+                        <span>Desarrollado por </span>
+                        &middot;
+                        <a href="https://github.com/cjcruzrivera?tab=repositories">cjcruzrivera</a>
+                    </div> -->
+                    </div>
+                </div>
+            </footer>
+            {% endblock %}
+        </div>
+    </div>
+    <script src="/static/assets/js/jquery.min.js"></script>
+    <script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/assets/js/Ultimate-Sidebar-Menu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    <script src="/static/assets/js/Templatescripts.js"></script>
+    {% block extraJs %}
+
+    {% endblock %}
+
+</body>
+
+</html>
