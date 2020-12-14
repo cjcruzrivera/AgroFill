@@ -38,13 +38,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% if calculos %}
+                    {% for calculo in calculos %}
                     <tr>
-                        <td>1</td>
-                        <td>Partidor Proporcional</td>
-                        <td>14/12/2020 - 10:25am</td>
-                        <td><a href="/historial/{{usuario.id}}"><i class="fas fa-eye"></i> Ver</a></td>
-                        <td><a href="#" onclick="deleteEstructura(1)"><i class="fas fa-trash"></i> Eliminar</a></td>
+                        <td>{{calculo.id}}</td>
+                        <td>{{calculo.tipoEstructura}}</td>
+                        <td>{{calculo.fecha.strftime("%d/%m/%Y %H:%M:%S")}}</td>
+                        {% if calculo.tipoEstructura == "Vertedero de Cresta Larga" %}
+                        <td><a href="/vertedero/{{calculo.id}}"><i class="fas fa-eye"></i> Ver</a></td>
+                        {% else %}
+                        <td><a href="/partidor/{{calculo.id}}"><i class="fas fa-eye"></i> Ver</a></td>
+                        {% endif %}
+                        <td><a href="#" onclick="deleteCalculo('{{calculo.id}}')"><i class="fas fa-trash"></i> Eliminar</a></td>
                     </tr>
+                    {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>

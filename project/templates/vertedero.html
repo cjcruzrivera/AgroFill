@@ -17,7 +17,7 @@
                             <div class="form-group">
                                 <label class="small mb-1" for="caudalMax">Caudal Máximo</label>
                                 <input required class="form-control " id="caudalMax" name="caudalMax" type="number"
-                                    min="0" step="any" placeholder="Caudal Q1" {% if data %} value="{{data.caudalMax}}"
+                                    min="0" step="any" {% if history %} disabled {% endif %} placeholder="Caudal Q1" {% if data %} value="{{data.caudalMax}}"
                                     {% endif %} />
                                 <div class="invalid-feedback">Ingrese un valor de caudal máximo válido</div>
                             </div>
@@ -26,7 +26,7 @@
                             <div class="form-group">
                                 <label class="small mb-1" for="caudalDis">Caudal de diseño</label>
                                 <input required class="form-control " id="caudalDis" name="caudalDis" type="number"
-                                    min="0" step="any" placeholder="Caudal Qd" {% if data %} value="{{data.caudalDis}}"
+                                    min="0" step="any" {% if history %} disabled {% endif %} placeholder="Caudal Qd" {% if data %} value="{{data.caudalDis}}"
                                     {% endif %} />
                                 <div class="invalid-feedback">Ingrese un valor de caudal de diseño válido</div>
                             </div>
@@ -35,7 +35,7 @@
                             <div class="form-group">
                                 <label class="small mb-1" for="pendiente">Pendiente del canal</label>
                                 <input required class="form-control " id="pendiente" name="pendiente" type="number"
-                                    min="0" step="any" placeholder="Pendiente " {% if data %} value="{{data.pendiente}}"
+                                    min="0" step="any" {% if history %} disabled {% endif %} placeholder="Pendiente " {% if data %} value="{{data.pendiente}}"
                                     {% endif %} />
                                 <div class="invalid-feedback">Ingrese un valor de pendiente de canal válido</div>
 
@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label class="small mb-1" for="base">Base del Canal</label>
                                 <input required class="form-control " id="base" name="base" type="number" min="0"
-                                    step="any" placeholder="Base " {% if data %} value="{{data.base}}" {% endif %} />
+                                    step="any" placeholder="Base " {% if history %} disabled {% endif %} {% if data %} value="{{data.base}}" {% endif %} />
                                 <div class="invalid-feedback">Ingrese un valor de base del canal válido</div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                             <div class="form-group">
                                 <label class="small mb-1" for="rugosidad">Rugosidad</label>
                                 <input required class="form-control mt-3 " id="rugosidad" name="rugosidad" type="number"
-                                    min="0" step="any" placeholder="Rugosidad" {% if data %} value="{{data.rugosidad}}"
+                                    min="0" step="any" {% if history %} disabled {% endif %} placeholder="Rugosidad" {% if data %} value="{{data.rugosidad}}"
                                     {% endif %} />
                                 <div class="invalid-feedback">Ingrese un valor de rugosidad válido</div>
                             </div>
@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 <label class="small mb-1" for="talud">Talud</label>
                                 <input required class="form-control mt-3 " id="talud" name="talud" type="number" min="0"
-                                    step="any" placeholder="Talud" {% if data %} value="{{data.talud}}" {% endif %} />
+                                    step="any" placeholder="Talud" {% if history %} disabled {% endif %} {% if data %} value="{{data.talud}}" {% endif %} />
                                 <div class="invalid-feedback">Ingrese un valor de talud válido</div>
                             </div>
                         </div>
@@ -73,14 +73,17 @@
                                 <label class="small mb-1" for="altura">Altura del Canal Aguas Arriba</label>
                                 <input required class="form-control " id="altura" name="altura" type="number" min="0"
                                     step="any" placeholder="Altura " {% if data %} value="{{data.altura}}"
-                                    {% endif %} />
+                                    {% endif %} {% if history %} disabled {% endif %}/>
                                 <div class="invalid-feedback">Ingrese un valor de Altura del Canal Aguas Arriba válido</div>
                             </div>
                         </div>
                     </div>
+                    {% if not history %}
+                    
                     <div class="form-group mt-4 mb-0"><button type="submit"
-                            class="btn btn-primary btn-block">Calcular</button></div>
-                </form>
+                        class="btn btn-primary btn-block">Calcular</button></div>
+                        {% endif %}
+                    </form>
             </div>
         </div>
     </div>

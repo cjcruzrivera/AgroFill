@@ -41,7 +41,7 @@ function deleteUser(id, nombre) {
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.isConfirmed) {
-      location.href = "eliminar/" + id;
+      location.href = "usuarios/eliminar/" + id;
     }
   })
 }

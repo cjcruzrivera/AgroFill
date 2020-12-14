@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
-from .models import User
+from .models import User, Calculo
 from . import db
+from datetime import datetime
+import json
 
 main = Blueprint('main', __name__)
 
@@ -23,7 +25,7 @@ def admin():
 
 
 
-@main.route('/eliminar/<user_id>')
+@main.route('/usuarios/eliminar/<user_id>')
 @login_required
 def eliminarUsuario(user_id):
 
@@ -36,17 +38,46 @@ def eliminarUsuario(user_id):
     flash('Usuario "{}" eliminado correctamente'.format(user.name), 'warning')
     return redirect(url_for('main.admin'))
 
+@main.route('/historial/eliminar/<calculo_id>')
+@login_required
+def eliminarHistorial(calculo_id):
+
+    #BORRAR USUARIO
+    calculo = Calculo.query.filter_by(id=calculo_id).first_or_404(description='No se encuentra ningún calculo registrado con id {}'.format(calculo_id))
+    id_user = calculo.id_usuario
+    db.session.delete(calculo)
+    db.session.commit()
+    flash('Calculo con id "{}" eliminado correctamente'.format(calculo_id), 'warning')
+    return redirect(url_for('main.historial', user_id=id_user))
+
+
 @main.route('/historial/<user_id>')
 @login_required
 def historial(user_id):
     user = User.query.filter_by(id=user_id).first_or_404(description='No se encuentra ningún usuario registrado con id {}'.format(user_id))
-
-    return render_template('historial.html', usuario=user)
+    calculos = Calculo.query.filter_by(id_usuario=user_id).all()
+    return render_template('historial.html', usuario=user, calculos=calculos)
 
 
 @main.route('/vertedero')
 def vertedero():
     return render_template('vertedero.html')
+
+@main.route('/vertedero/<calculo_id>')
+@login_required
+def vertedero_consulta(calculo_id):
+    calculo = Calculo.query.filter_by(id=calculo_id).first_or_404(description='No se encuentra ningún calculo registrado con id {}'.format(calculo_id))
+    data = json.loads(calculo.data)
+    resultados = json.loads(calculo.resultados)
+    return render_template('vertedero.html', data=data,resultados=resultados, history=True)
+
+@main.route('/partidor/<calculo_id>')
+@login_required
+def partidor_consulta(calculo_id):
+    calculo = Calculo.query.filter_by(id=calculo_id).first_or_404(description='No se encuentra ningún calculo registrado con id {}'.format(calculo_id))
+    data = json.loads(calculo.data)
+    resultados = json.loads(calculo.resultados)
+    return render_template('partidor.html', data=data,resultados=resultados, history=True)
 
 
 @main.route('/vertedero', methods=['POST'])
@@ -60,8 +91,8 @@ def vertedero_post():
         "talud" : request.form.get("talud"),
         "altura" : request.form.get("altura"),
     }
-    # TODO: Realizar los calculos y retornarlos.
-
+    # TODO: Realizar los calculos
+        
     resultados = {
         "longitud" : "25",
         "angulo" : "25",
@@ -73,6 +104,13 @@ def vertedero_post():
         "alturaAgua" : "25",
     }
 
+
+    if current_user.is_authenticated:
+        fecha = datetime.now()
+        new_calculo = Calculo(fecha=fecha, id_usuario=current_user.id, tipoEstructura="Vertedero de Cresta Larga", data=json.dumps(data) , resultados=json.dumps(resultados) )
+        db.session.add(new_calculo)
+        db.session.commit()
+    
     return render_template('vertedero.html', data=data,resultados=resultados)
 
 
@@ -98,7 +136,7 @@ def partidor_post():
         "tiranteCanal" : request.form.get("tiranteCanal"),
         "cotaCanal" : request.form.get("cotaCanal"),
     }
-    # TODO: Realizar los calculos y retornarlos.
+    # TODO: Realizar los calculos 
 
     resultados = {
         "energia" : "35.000",
@@ -106,6 +144,13 @@ def partidor_post():
         "anchos" : "53",
         "froude" : "35"
     }
+
+    if current_user.is_authenticated:
+        fecha = datetime.now()
+        new_calculo = Calculo(fecha=fecha, id_usuario=current_user.id, tipoEstructura="Partidor Proporcional", data=json.dumps(data) , resultados=json.dumps(resultados) )
+        db.session.add(new_calculo)
+        db.session.commit()
+
     return render_template('partidor.html', data=data,resultados=resultados)
 
 

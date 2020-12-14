@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 function deleteCalculo(id) {
   Swal.fire({
-    title: '¿Seguro desea eliminar el usuario "' + nombre + '"?',
+    title: '¿Seguro desea eliminar el calculo registrado con id "' + id + '"?',
     text: "No se podrá recuperar una vez eliminado!",
     icon: 'warning',
     showCancelButton: true,
@@ -31,7 +31,7 @@ function deleteCalculo(id) {
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.isConfirmed) {
-      location.href = "eliminar/" + id;
+      location.href = "/historial/eliminar/" + id;
     }
   })
 }

@@ -7,3 +7,12 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
     isAdmin = db.Column(db.Boolean, default=False)
+
+
+class Calculo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    id_usuario = db.Column(db.Integer)
+    fecha = db.Column(db.DateTime)
+    tipoEstructura = db.Column(db.String(1000))
+    data = db.Column(db.String(1000))
+    resultados = db.Column(db.String(1000))
