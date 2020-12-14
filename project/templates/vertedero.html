@@ -10,62 +10,76 @@
     <div class="col-md-7">
         <div class="card mb-4">
             <div class="card-body">
-                <form id="form" autocomplete="off">
+                <form action="/vertedero" method="POST" id="form" autocomplete="off" class="needs-validation"
+                    novalidate>
                     <div class="form-row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputFirstName">Caudal Máximo</label>
-                                <input required class="form-control " id="inputFirstName" type="text" placeholder="Caudal Q1" />
+                                <label class="small mb-1" for="caudalMax">Caudal Máximo</label>
+                                <input required class="form-control " id="caudalMax" name="caudalMax" type="number"
+                                    min="0" step="any" placeholder="Caudal Q1" {% if data %} value="{{data.caudalMax}}"
+                                    {% endif %} />
                                 <div class="invalid-feedback">Ingrese un valor de caudal máximo válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Caudal de diseño</label>
-                                <input required class="form-control " id="inputLastName" type="text" placeholder="Caudal Qd" />
+                                <label class="small mb-1" for="caudalDis">Caudal de diseño</label>
+                                <input required class="form-control " id="caudalDis" name="caudalDis" type="number"
+                                    min="0" step="any" placeholder="Caudal Qd" {% if data %} value="{{data.caudalDis}}"
+                                    {% endif %} />
+                                <div class="invalid-feedback">Ingrese un valor de caudal de diseño válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Pendiente del canal</label>
-                                <input required class="form-control " id="inputLastName" type="text" placeholder="Pendiente " />
+                                <label class="small mb-1" for="pendiente">Pendiente del canal</label>
+                                <input required class="form-control " id="pendiente" name="pendiente" type="number"
+                                    min="0" step="any" placeholder="Pendiente " {% if data %} value="{{data.pendiente}}"
+                                    {% endif %} />
+                                <div class="invalid-feedback">Ingrese un valor de pendiente de canal válido</div>
+
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Base del Canal</label>
-                                <input required class="form-control " id="inputLastName" type="text" placeholder="Base " />
+                                <label class="small mb-1" for="base">Base del Canal</label>
+                                <input required class="form-control " id="base" name="base" type="number" min="0"
+                                    step="any" placeholder="Base " {% if data %} value="{{data.base}}" {% endif %} />
+                                <div class="invalid-feedback">Ingrese un valor de base del canal válido</div>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="form-group">
-                        <label class="small mb-1" for="inputEmailAddress">Email</label>
-                        <input required class="form-control" id="inputEmailAddress" type="email"
-                            aria-describedby="emailHelp" placeholder="Enter email address" />
-                    </div> -->
-
                     <div class="form-row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputFirstName">Rugosidad</label>
-                                <input required class="form-control mt-3 " id="inputFirstName" type="text" placeholder="Rugosidad" />
+                                <label class="small mb-1" for="rugosidad">Rugosidad</label>
+                                <input required class="form-control mt-3 " id="rugosidad" name="rugosidad" type="number"
+                                    min="0" step="any" placeholder="Rugosidad" {% if data %} value="{{data.rugosidad}}"
+                                    {% endif %} />
+                                <div class="invalid-feedback">Ingrese un valor de rugosidad válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Talud</label>
-                                <input required class="form-control mt-3 " id="inputLastName" type="text" placeholder="Talud" />
+                                <label class="small mb-1" for="talud">Talud</label>
+                                <input required class="form-control mt-3 " id="talud" name="talud" type="number" min="0"
+                                    step="any" placeholder="Talud" {% if data %} value="{{data.talud}}" {% endif %} />
+                                <div class="invalid-feedback">Ingrese un valor de talud válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Altura del Canal Aguas Arriba</label>
-                                <input required class="form-control " id="inputLastName" type="text" placeholder="Altura " />
+                                <label class="small mb-1" for="altura">Altura del Canal Aguas Arriba</label>
+                                <input required class="form-control " id="altura" name="altura" type="number" min="0"
+                                    step="any" placeholder="Altura " {% if data %} value="{{data.altura}}"
+                                    {% endif %} />
+                                <div class="invalid-feedback">Ingrese un valor de Altura del Canal Aguas Arriba válido</div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block"
-                        href="#resultado" onclick="sendForm()">Calcular</a></div>
+                    <div class="form-group mt-4 mb-0"><button type="submit"
+                            class="btn btn-primary btn-block">Calcular</button></div>
                 </form>
             </div>
         </div>
@@ -76,94 +90,86 @@
                 <div class="row">
                     <div class="col-md-12"><img style="width: inherit;" src="/static/images/vertedero.jpg" alt=""></div>
                 </div>
-                <div id="resultado" style="display: none;">
+                {% if resultados %}
+
+
+                <div id="resultado">
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Longitud Cresta Vertedero
+                                <label class="small mb-1" for="longitud">Longitud Cresta Vertedero
                                     (m):</label>
-                                <input class="form-control " id="inputLastName" type="number" min="1"
-                                    placeholder="Longitud " disabled />
+                                <input class="form-control " id="longitud" type="number" min="1" placeholder="Longitud "
+                                    value="{{resultados.longitud}}" disabled />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Ángulo de inclinación:</label>
-                                <input class="form-control mt-3" id="inputLastName" type="number" min="1"
-                                    placeholder="Ángulo " disabled />
+                                <label class="small mb-1" for="angulo">Ángulo de inclinación:</label>
+                                <input class="form-control mt-3" id="angulo" type="number" min="1" placeholder="Ángulo "
+                                    disabled value="{{resultados.angulo}}" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Ancho de la cresta
+                                <label class="small mb-1" for="ancho">Ancho de la cresta
                                     (m):</label>
-                                <input class="form-control mt-3" id="inputLastName" type="number" min="1"
-                                    placeholder="Ancho " disabled />
+                                <input class="form-control mt-3" id="ancho" type="number" min="1" placeholder="Ancho "
+                                    disabled value="{{resultados.ancho}}" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Ancho de entrada de la cresta
+                                <label class="small mb-1" for="anchoEntrada">Ancho de entrada de la cresta
                                     (m):</label>
-                                <input class="form-control " id="inputLastName" type="number" min="1"
-                                    placeholder="Ancho " disabled />
+                                <input class="form-control " id="anchoEntrada" type="number" min="1"
+                                    placeholder="Ancho " disabled value="{{resultados.anchoEntrada}}" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Tirante del vertedero (m):</label>
-                                <input class="form-control mt-3" id="inputLastName" type="number" min="1"
-                                    placeholder="Tirante " disabled />
+                                <label class="small mb-1" for="tirante">Tirante del vertedero (m):</label>
+                                <input class="form-control mt-3" id="tirante" type="number" min="1"
+                                    placeholder="Tirante " disabled value="{{resultados.tirante}}" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Tirante normal de la entrada y la salida
+                                <label class="small mb-1" for="tiranteNormal">Tirante normal de la entrada y la salida
                                     (m):</label>
-                                <input class="form-control " id="inputLastName" type="number" min="1"
-                                    placeholder="Tirante " disabled />
+                                <input class="form-control " id="tiranteNormal" type="number" min="1"
+                                    placeholder="Tirante " disabled value="{{resultados.tiranteNormal}}" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Altura del vertedero H2:</label>
-                                <input class="form-control mt-3" id="inputLastName" type="number" min="1"
-                                    placeholder="Altura" disabled />
+                                <label class="small mb-1" for="alturaVer">Altura del vertedero H2:</label>
+                                <input class="form-control mt-3" id="alturaVer" type="number" min="1"
+                                    placeholder="Altura" disabled value="{{resultados.alturaVer}}" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Altura del agua de entrada
+                                <label class="small mb-1" for="alturaAgua">Altura del agua de entrada
                                     (m):</label>
-                                <input class="form-control " id="inputLastName" type="number" min="1"
-                                    placeholder="Altura " disabled />
+                                <input class="form-control " id="alturaAgua" type="number" min="1" placeholder="Altura "
+                                    disabled value="{{resultados.alturaAgua}}" />
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endif %}
+
             </div>
         </div>
     </div>
 </div>
-
-{% endblock %}
-
-{% block extraJs %}
-<script>
-    function sendForm() {
-        
-        if($("#form")[0].checkValidity() != false){
-            $('#resultado').show();
-        }
-        // $("#form").submit();
-    }    
-</script>
 
 {% endblock %}

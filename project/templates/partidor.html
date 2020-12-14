@@ -10,82 +10,87 @@
     <div class="col-md-7">
         <div class="card mb-4">
             <div class="card-body">
-                <form id="form" autocomplete="off" class="needs-validation" novalidate>
+                <form action="/partidor" method="POST" id="form" autocomplete="off" class="needs-validation" novalidate>
                     <h1 class="display-1" style="font-size: 20px;font-weight:bold;">Entrada Estructura</h1>
                     <hr>
                     <div class="form-row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputFirstName">Caudal de llegada (m3/s)</label>
-                                <input required class="form-control " id="inputFirstName" type="number" min="1" placeholder="Caudal" />
+                                <label class="small mb-1" for="caudal">Caudal de llegada (m3/s)</label>
+                                <input {% if data %} value="{{data.caudal}}" {% endif %} required class="form-control " id="caudal" name="caudal"  type="number" min="0" step="any" placeholder="Caudal" />
+                                <div class="invalid-feedback">Ingrese un valor de caudal válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Tirante del agua (m)</label>
-                                <input required class="form-control mt-3" id="inputLastName" type="number" min="1" placeholder="Tirante" />
+                                <label class="small mb-1" for="tiranteEstruct">Tirante del agua (m)</label>
+                                <input {% if data %} value="{{data.tiranteEstruct}}" {% endif %} required class="form-control mt-3" id="tiranteEstruct" name="tiranteEstruct"  type="number" min="0" step="any" placeholder="Tirante" />
+                                <div class="invalid-feedback">Ingrese un valor de Tirante del agua válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Solera del canal (m)</label>
-                                <input required class="form-control mt-3" id="inputLastName" type="number" min="1" placeholder="Solera " />
+                                <label class="small mb-1" for="solera">Solera del canal (m)</label>
+                                <input {% if data %} value="{{data.solera}}" {% endif %} required class="form-control mt-3" id="solera" name="solera"  type="number" min="0" step="any" placeholder="Solera " />
+                                <div class="invalid-feedback">Ingrese un valor de Solera del Canal válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Talud de las paredes (m:1)</label>
-                                <input required class="form-control " id="inputLastName" type="number" min="1" placeholder="Talud " />
+                                <label class="small mb-1" for="talud">Talud de las paredes (m:1)</label>
+                                <input {% if data %} value="{{data.talud}}" {% endif %} required class="form-control " id="talud" name="talud"  type="number" min="0" step="any" placeholder="Talud " />
+                                <div class="invalid-feedback">Ingrese un valor de talud válido</div>
                             </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputFirstName">Rugosidad (n)</label>
-                                <input required class="form-control mt-3" id="inputFirstName" type="number" min="1" placeholder="Caudal" />
+                                <label class="small mb-1" for="rugosidad">Rugosidad (n)</label>
+                                <input {% if data %} value="{{data.rugosidad}}" {% endif %} required class="form-control mt-3" id="rugosidad" name="rugosidad"  type="number" min="0" step="any" placeholder="Rugosidad" />
+                                <div class="invalid-feedback">Ingrese un valor de rugosidad válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Ancho del Partidor (m)</label>
-                                <input required class="form-control mt-3" id="inputLastName" type="number" min="1" placeholder="Tirante" />
+                                <label class="small mb-1" for="ancho">Ancho del Partidor (m)</label>
+                                <input {% if data %} value="{{data.ancho}}" {% endif %} required class="form-control mt-3" id="ancho" name="ancho"  type="number" min="0" step="any" placeholder="Ancho" />
+                                <div class="invalid-feedback">Ingrese un valor de ancho del partidor válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Cota Base del Partidor(m)
+                                <label class="small mb-1" for="cotaPartidor">Cota Base del Partidor (m)
                                 </label>
-                                <input required class="form-control " id="inputLastName" type="number" min="1" placeholder="Solera " />
+                                <input {% if data %} value="{{data.cotaPartidor}}" {% endif %} required class="form-control " id="cotaPartidor" name="cotaPartidor"  type="number" min="0" step="any" placeholder="Cota Base " />
+                                <div class="invalid-feedback">Ingrese un valor de Cota Base del Partidor válido</div>
                             </div>
                         </div>
 
                     </div>
-                    <!-- <div class="form-group">
-                        <label class="small mb-1" for="inputEmailAddress">Email</label>
-                        <input required class="form-control" id="inputEmailAddress" type="email"
-                            aria-describedby="emailHelp" placeholder="Enter email address" />
-                    </div> -->
                     <hr>
                     <h1 class="display-1" style="font-size: 20px;font-weight:bold;">Aguas Abajo</h1>
                     <hr>
                     <div class="form-row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputFirstName">Caudal divido 1 (m3/s)</label>
-                                <input required class="form-control mt-3" id="inputFirstName" type="number" min="1" placeholder="Caudal" />
+                                <label class="small mb-1" for="caudal1">Caudal dividido 1 (m3/s)</label>
+                                <input {% if data %} value="{{data.caudal1}}" {% endif %} required class="form-control " id="caudal1" name="caudal1"  type="number" min="0" step="any" placeholder="Caudal" />
+                                <div class="invalid-feedback">Ingrese un valor de Caudal dividido 1 válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Tirante del agua (m)</label>
-                                <input required class="form-control mt-3" id="inputLastName" type="number" min="1" placeholder="Tirante" />
+                                <label class="small mb-1" for="tiranteAgua">Tirante del agua (m)</label>
+                                <input {% if data %} value="{{data.tiranteAgua}}" {% endif %} required class="form-control mt-3" id="tiranteAgua" name="tiranteAgua"  type="number" min="0" step="any" placeholder="Tirante" />
+                                <div class="invalid-feedback">Ingrese un valor de Tirante del agua válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Cota Base del Canal (m)</label>
-                                <input required class="form-control " id="inputLastName" type="number" min="1" placeholder="Solera " />
+                                <label class="small mb-1" for="cotaAgua">Cota Base del Canal (m)</label>
+                                <input {% if data %} value="{{data.cotaAgua}}" {% endif %} required class="form-control " id="cotaAgua" name="cotaAgua"  type="number" min="0" step="any" placeholder="Cota Base " />
+                                <div class="invalid-feedback">Ingrese un valor de Cota Base del Canal válido</div>
                             </div>
                         </div>
 
@@ -96,26 +101,28 @@
                     <div class="form-row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputFirstName">Caudal divido 2 (m3/s)</label>
-                                <input required class="form-control mt-3" id="inputFirstName" type="number" min="1" placeholder="Caudal" />
+                                <label class="small mb-1" for="caudal2">Caudal dividido 2 (m3/s)</label>
+                                <input {% if data %} value="{{data.caudal2}}" {% endif %} required class="form-control" id="caudal2" name="caudal2"  type="number" min="0" step="any" placeholder="Caudal" />
+                                <div class="invalid-feedback">Ingrese un valor de Caudal dividido 2 válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Tirante del agua (m)</label>
-                                <input required class="form-control mt-3" id="inputLastName" type="number" min="1" placeholder="Tirante" />
+                                <label class="small mb-1" for="tiranteCanal">Tirante del agua (m)</label>
+                                <input {% if data %} value="{{data.tiranteCanal}}" {% endif %} required class="form-control mt-3" id="tiranteCanal" name="tiranteCanal"  type="number" min="0" step="any" placeholder="Tirante" />
+                                <div class="invalid-feedback">Ingrese un valor de Tirante del agua válido</div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="small mb-1" for="inputLastName">Cota Base del Canal (m)</label>
-                                <input required class="form-control " id="inputLastName" type="number" min="1" placeholder="Solera " />
+                                <label class="small mb-1" for="cotaCanal">Cota Base del Canal (m)</label>
+                                <input {% if data %} value="{{data.cotaCanal}}" {% endif %} required class="form-control " id="cotaCanal" name="cotaCanal"  type="number" min="0" step="any" placeholder="Cota Base " />
+                                <div class="invalid-feedback">Ingrese un valor de Cota Base del Canal válido</div>
                             </div>
                         </div>
 
                     </div>
-                    <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block"
-                            href="#resultado" onclick="sendForm()">Calcular</a></div>
+                    <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Calcular</button></div>
                 </form>
             </div>
         </div>
@@ -126,47 +133,50 @@
                 <div class="row">
                     <div class="col-md-12"><img style="width: inherit;" src="/static/images/partidor.jpg" alt=""></div>
                 </div>
-                <div id="resultado" style="display: none;">
+                {% if resultados %}
+                <div id="resultado">
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group row">
-                                <label class="col-md-8 small mb-1 col-form-label" for="inputLastName">Energia Inicial Y Mínima
+                                <label class="col-md-8 small mb-1 col-form-label" for="energia">Energia Inicial Y Mínima
                                     (m):</label>
-                                <input class="col-md-4 form-control " id="inputLastName" type="number" min="1"
-                                    placeholder="Energia " disabled />
+                                <input class="col-md-4 form-control " id="energia" type="number" min="0" step="any"
+                                    placeholder="Energia " disabled value="{{resultados.energia}}" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group row">
-                                <label class="col-md-8 small mb-1 col-form-label" for="inputLastName">Altura del vertedero
+                                <label class="col-md-8 small mb-1 col-form-label" for="altura">Altura del vertedero
                                     (m):</label>
-                                <input class="col-md-4 form-control " id="inputLastName" type="number" min="1"
-                                    placeholder="Altura " disabled />
+                                <input class="col-md-4 form-control " id="altura" type="number" min="0" step="any"
+                                    placeholder="Altura " disabled value="{{resultados.altura}}" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group row">
-                                <label class="col-md-8 small mb-1 col-form-label" for="inputLastName">Anchos para derivar los respectivos caudales (m):</label>
-                                <input class="col-md-4 form-control mt-2" id="inputLastName" type="number" min="1"
-                                    placeholder="Anchos " disabled />
+                                <label class="col-md-8 small mb-1 col-form-label" for="anchos">Anchos para derivar los respectivos caudales (m):</label>
+                                <input class="col-md-4 form-control mt-2" id="anchos" type="number" min="0" step="any"
+                                    placeholder="Anchos " disabled  value="{{resultados.anchos}}"/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group row">
-                                <label class="col-md-8 small mb-1 col-form-label" for="inputLastName">No. De Froude:</label>
-                                <input class="col-md-4 form-control " id="inputLastName" type="number" min="1"
-                                    placeholder="No. De Froude " disabled />
+                                <label class="col-md-8 small mb-1 col-form-label" for="froude">No. De Froude:</label>
+                                <input class="col-md-4 form-control " id="froude" type="number" min="0" step="any"
+                                    placeholder="No. De Froude " disabled value="{{resultados.froude}}" />
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endif %}
+
             </div>
         </div>
     </div>
@@ -174,13 +184,3 @@
 
 {% endblock %}
 
-
-
-{% block extraJs %}
-<script>
-    function sendForm() {
-        $('#resultado').show();
-        // $("#form").submit();
-    }    
-</script>
-{% endblock %}

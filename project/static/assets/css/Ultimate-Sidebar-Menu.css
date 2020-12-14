@@ -2257,6 +2257,7 @@ textarea.form-control {
   margin-top: 0.25rem;
   font-size: 80%;
   color: #dc3545;
+  background-color: white;
 }
 
 .invalid-tooltip {

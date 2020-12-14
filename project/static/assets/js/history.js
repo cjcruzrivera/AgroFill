@@ -1,15 +1,5 @@
 $(document).ready(function () {
 
-  if (notAdmin) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Acceso denegado.',
-      text: 'Parece que no posees permisos para acceder a esta pantalla',
-    }).then((result) => {
-      location.href = "/inicio"
-    })
-  }
-
   $('#dataTable').DataTable({
     "language": {
       "lengthMenu": "Mostrando _MENU_ registros por página",
@@ -29,7 +19,7 @@ $(document).ready(function () {
   });
 });
 
-function deleteUser(id, nombre) {
+function deleteCalculo(id) {
   Swal.fire({
     title: '¿Seguro desea eliminar el usuario "' + nombre + '"?',
     text: "No se podrá recuperar una vez eliminado!",
