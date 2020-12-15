@@ -8,6 +8,15 @@ Sistema de apoyo en el diseño de estructuras hidraulicas.
 
 ## Instalación
 
+El primer paso es realizar la clonación del proyecto y acceder al mismo:
+
+```shell
+$ git clone https://github.com/cjcruzrivera/AgroFill.git
+$ cd Agrofill/
+
+```
+
+
 Instalar [virtualenv](hhttps://docs.python.org/3/library/venv.html) y ejecutarlo:
 
 ```shell
