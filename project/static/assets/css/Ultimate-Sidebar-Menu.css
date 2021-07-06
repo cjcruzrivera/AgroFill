@@ -2446,24 +2446,24 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #31a5d6;
+  border-color: #31a5d6;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #0069d9;
+  background-color: #1d75d3e6;
   border-color: #0062cc;
 }
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #0069d9;
+  background-color: #1d75d3e6;
   border-color: #0062cc;
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #31a5d6;
+  border-color: #31a5d6;
 }
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
   color: #fff;
