@@ -12,11 +12,11 @@
                     <div class="card-body">
                         <form action="/vertedero" method="POST" id="form" autocomplete="off" class="needs-validation"
                             novalidate>
-                            <h1 class="display-1" style="font-size: 20px;font-weight:bold;">Datos de Estructura</h1>
+                            <h1 class="display-1" style="font-size: 20px;font-weight:bold;">Sección Transversal del Canal</h1>
                             <hr>
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label class="mt-2">Seleccione el tipo de estructura</label>
+                                    <label class="mt-2">Seleccione el tipo de sección</label>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check">
@@ -33,6 +33,12 @@
                                                 history %} disabled {% endif %}>
                                         <label class="form-check-label" for="inlineCheckbox2">Trapezoidal</label>
                                     </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1 class="display-1" style="font-size: 20px;font-weight:bold;">Datos de Entrada</h1>
                                 </div>
                             </div>
                             <hr>
@@ -114,7 +120,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="carga">Carga Hidraulica <b>Δh(m)</b> [0.05 - 0.10
+                                        <label class="small mb-1" for="carga">Carga Hidraulica <b>ΔH(m)</b> [0.05 - 0.10
                                             m]</label>
                                         <input required class="form-control" id="carga" name="carga" type="number"
                                             min="0.05" max="0.1" step="0.001" {% if history %} disabled {% endif %}
@@ -239,22 +245,22 @@
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Cota A</label>
+                                <div class="form-group"><label for="" class="small mb-1"><b>Cota A</b></label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.cotaA}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Cota B </label>
+                                <div class="form-group"><label for="" class="small mb-1"><b>Cota B</b> </label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.cotaB}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Cota C</label>
+                                <div class="form-group"><label for="" class="small mb-1"><b>Cota C</b></label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.cotaC}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Cota D</label>
+                                <div class="form-group"><label for="" class="small mb-1"><b>Cota D</b></label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.cotaD}}">
                                 </div>
                             </div>
@@ -263,7 +269,7 @@
                             <div class="col-md-12">
                                 <p class="red mb-0"> <b>*Condiciones de Diseño:</b></p> <b>V ≤ 1.0 m/s</b><br>
                                 <b>45° < θ < 70°</b> <br>
-                                        En caso de no cumplirse, verificar relacion entre Qd y b y/o modificar Δh
+                                        En caso de no cumplirse, verificar relación entre Qd y b y/o modificar ΔH
                             </div>
                         </div>
                     </div>
@@ -280,8 +286,8 @@
                             alt="Sección Transversal del canal"><div>Sección Transversal del canal</div></div>
                 </div>
                 <div class="row rect d-none">
-                    <div class="col-md-12 ml-5 imagen"><img style="width: 75%;" src="/static/images/patoRect.png"
-                            alt="Vista en planta del vertedero"><div style="margin-left: -14% !important; width: 100%">Parametros Vertedero. Vista en planta</div></div>
+                    <div class="col-md-12 imagen"><img style="width: 115%;" src="/static/images/patoRect.png"
+                            alt="Vista en planta del vertedero"><div style=" width: 100%">Parametros Vertedero. Vista en planta</div></div>
                 </div>
                 <div class="row trape d-none">
                     <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/canaltrapez.png"
