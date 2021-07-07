@@ -118,35 +118,35 @@ def vertedero_post():
         valorTirante=parametrosTrap(data['caudalDis'],data['rugosidad'],data['pendiente'],data['base'],data['talud'],data['alturaMuro'])
     
     valoresDisVertedero = DisVertedero(valorTirante[0],data['carga'], data['caudalDis'], data['base'], data['talud'])
-    valoresCotas= Cotas(data['cotaA'],data['carga'], valoresDisVertedero[1])
+    valoresCotas= Cotas(data['cotaA'],data['carga'], valoresDisVertedero[0])
 
     if  data['tipo'] == "rectangular": 
-        valores_y2_Desnivel=y2_Desnivelrec(valoresDisVertedero[0], data['rugosidad'],data['pendiente'],data['base'],valorTirante[0],data['caudalDis'],data['carga'])
+        valores_y2_Desnivel=y2_Desnivelrec(valoresDisVertedero[6], data['rugosidad'],data['pendiente'],data['base'],valorTirante[0],data['caudalDis'],data['carga'])
     else:
-        valores_y2_Desnivel= y2_DesnivelTrap(valoresDisVertedero[0], data['rugosidad'],data['pendiente'],data['base'],data['talud'],valorTirante[0],data['caudalDis'],data['carga'])
+        valores_y2_Desnivel= y2_DesnivelTrap(valoresDisVertedero[6], data['rugosidad'],data['pendiente'],data['base'],data['talud'],valorTirante[0],data['caudalDis'],data['carga'])
     
     resultados = {
-        "tirante_normal": valorTirante[0],
-        "tirante_critico": valorTirante[4],
-        "velocidad": valorTirante[1],
-        "borde_libre": valorTirante[2],
-        "froude": valorTirante[3],
-        "energia": valores_y2_Desnivel[1],
-        "angulo": valoresDisVertedero[5],
-        "altura": valoresDisVertedero[0],
-        "ancho": valoresDisVertedero[1],
-        "tirante_final": valores_y2_Desnivel[0],
-        "longitud_total": valoresDisVertedero[2],
-        "longitud_1": valoresDisVertedero[3],
+        "tirante_normal": round(valorTirante[0], 3),
+        "tirante_critico": round(valorTirante[4], 3),
+        "velocidad": round(valorTirante[1], 3),
+        "borde_libre": round(valorTirante[2], 3),
+        "froude": round(valorTirante[3], 3),
+        "energia": round(valores_y2_Desnivel[1], 3),
+        "angulo": round(valoresDisVertedero[5],3),
+        "altura": round(valoresDisVertedero[0],3),
+        "ancho": round(valoresDisVertedero[1],3),
+        "tirante_final": round(valores_y2_Desnivel[0], 3),
+        "longitud_total": round(valoresDisVertedero[2],3),
+        "longitud_1": round(valoresDisVertedero[3],3),
         "longitud_2": 0.4,#Fijo
         "longitud_3": abs(valoresDisVertedero[4]),
-        "desnivel": valores_y2_Desnivel[2],
-        "caudal": valoresDisVertedero[6],
-        "velocidad_vertedero": valoresDisVertedero[7],
-        "cotaA": valoresCotas[0],
-        "cotaB": valoresCotas[1],
-        "cotaC": valoresCotas[2],
-        "cotaD": valoresCotas[3],
+        "desnivel": round(valores_y2_Desnivel[2], 3),
+        "caudal": round(valoresDisVertedero[6],3),
+        "velocidad_vertedero": round(valoresDisVertedero[7],3),
+        "cotaA": round(valoresCotas[0],3),
+        "cotaB": round(valoresCotas[1],3),
+        "cotaC": round(valoresCotas[2],3),
+        "cotaD": round(valoresCotas[3],3),
     }
 
     if current_user.is_authenticated:

@@ -39,7 +39,7 @@
                             <div class="form-row oculto d-none">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="caudalDis">Caudal de diseño <br> (m³/s)</label>
+                                        <label class="small mb-1" for="caudalDis">Caudal de diseño <br> <b>Qd</b> (m³/s)</label>
                                         <input style="padding-left: 9px !important;" required class="form-control "
                                             id="caudalDis" name="caudalDis" type="number" min="0" step="any" {% if
                                             history %} disabled {% endif %} placeholder="Qd" {% if data %}
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="base">Base del Canal (m)</label>
+                                        <label class="small mb-1" for="base">Base del Canal <b>b</b> (m)</label>
                                         <input required class="form-control mt-3" id="base" name="base" type="number"
                                             min="0" step="any" placeholder="b []" {% if history %} disabled {% endif %}
                                             {% if data %} value="{{data.base}}" {% endif %} />
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="col-md-3" id="talud_form">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="talud">Talud</label>
+                                        <label class="small mb-1" for="talud">Talud <b>z</b></label>
                                         <input required class="form-control mt-3 " id="talud" name="talud" type="number"
                                             min="0.0001" step="0.0001" placeholder="z" {% if history %} disabled {%
                                             endif %} {% if data %} value="{{data.talud}}" {% endif %} />
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="alturaMuro">Altura Muros (m)</label>
+                                        <label class="small mb-1" for="alturaMuro">Altura Muros <b>Hm</b> (m)</label>
                                         <input required class="form-control mt-3" id="alturaMuro" name="alturaMuro"
                                             type="number" min="0.0001" step="any" {% if history %} disabled {% endif %}
                                             placeholder="Hm [> 0]" {% if data %} value="{{data.alturaMuro}}" {% endif
@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="carga">Carga Hidraulica (m) [0.05 - 0.10
+                                        <label class="small mb-1" for="carga">Carga Hidraulica <b>Δh(m)</b> [0.05 - 0.10
                                             m]</label>
                                         <input required class="form-control" id="carga" name="carga" type="number"
                                             min="0.05" max="0.1" step="0.001" {% if history %} disabled {% endif %}
@@ -142,34 +142,34 @@
                         <hr>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante Normal [y1,m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Tirante Normal [<b>y1</b>,m]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.tirante_normal}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante Crítico [yc, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Tirante Crítico [<b>yc</b>, m]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.tirante_critico}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1"><span class="red"><b>*</b></span>Velocidad [V, m/s]</label>
+                                <div class="form-group"><label for="" class="small mb-1"><span class="red"><b>*</b></span>Velocidad [<b>V</b>, m/s]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.velocidad}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Borde Libre [Bl, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Borde Libre [<b>Bl</b>, m]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.borde_libre}}">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Número de Froude [F]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Número de Froude [<b>F</b>]</label>
                                     <input disabled name="" id="" class="form-control mt-3" value="{{resultados.froude}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Energía Especifica <br> [E1, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Energía Especifica <br> [<b>E1</b>, m]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.energia}}">
                                 </div>
                             </div>
@@ -177,61 +177,61 @@
                         <hr>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1"><span class="red"><b>*</b></span>Ángulo [θ]</label>
+                                <div class="form-group"><label for="" class="small mb-1"><span class="red"><b>*</b></span>Ángulo [<b>θ</b>]</label>
                                     <input disabled name="" id="" class="form-control mt-3" value="{{resultados.angulo}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Altura vertedero <br> [Hv, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Altura vertedero <br> [<b>Hv</b>, m]</label>
                                     <input disabled name="" id="" class="form-control " value="{{resultados.altura}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Ancho Entrada [T, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Ancho Entrada [<b>T</b>, m]</label>
                                     <input disabled name="" id="" class="form-control mt-3" value="{{resultados.ancho}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante Final [y2, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Tirante Final [<b>y2</b>, m]</label>
                                     <input disabled name="" id="" class="form-control mt-3" value="{{resultados.tirante_final}}">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Longitud Total [Lt, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Longitud Total [<b>Lt</b>, m]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.longitud_total}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Longitud 1 [L1, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Longitud 1 [<b>L1</b>, m]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.longitud_1}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Longitud 2 [L2, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Longitud 2 [<b>L2</b>, m]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.longitud_2}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Longitud 3 [L3, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Longitud 3 [<b>L3</b>, m]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.longitud_3}}">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Desnivel [ΔZ, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Desnivel [<b>ΔZ</b>, m]</label>
                                     <input disabled name="" id="" class="form-control mt-3" value="{{resultados.desnivel}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Caudal [Qv, m³/s]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Caudal [<b>Qv</b>, m³/s]</label>
                                     <input disabled name="" id="" class="form-control mt-3" value="{{resultados.caudal}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Velocidad Vertedero <br>[Vv, m/s]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Velocidad Vertedero <br>[<b>Vv</b>, m/s]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.velocidad_vertedero}}">
                                 </div>
                             </div>
@@ -276,24 +276,24 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="row rect d-none">
-                    <div class="col-md-12"><img style="width: inherit;" src="/static/images/canalR.png"
-                            alt="Sección Transversal del canal"></div>
+                    <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/canalR.png"
+                            alt="Sección Transversal del canal"><div>Sección Transversal del canal</div></div>
                 </div>
                 <div class="row rect d-none">
-                    <div class="col-md-12 ml-5"><img style="width: 75%;" src="/static/images/patoRect.png"
-                            alt="Vista en planta del vertedero"></div>
+                    <div class="col-md-12 ml-5 imagen"><img style="width: 75%;" src="/static/images/patoRect.png"
+                            alt="Vista en planta del vertedero"><div style="margin-left: -14% !important; width: 100%">Parametros Vertedero. Vista en planta</div></div>
                 </div>
                 <div class="row trape d-none">
-                    <div class="col-md-12"><img style="width: inherit;" src="/static/images/canaltrapez.png"
-                            alt="Sección Transversal del canal"></div>
+                    <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/canaltrapez.png"
+                            alt="Sección Transversal del canal"><div>Sección Transversal del canal</div></div>
                 </div>
                 <div class="row trape d-none">
-                    <div class="col-md-12 ml-5"><img style="width: 75%;" src="/static/images/patoTrape.png"
-                            alt="Vista en planta del vertedero"></div>
+                    <div class="col-md-12 ml-5 imagen"><img style="width: 75%;" src="/static/images/patoTrape.png"
+                            alt="Vista en planta del vertedero"><div style="margin-left: -14% !important; width: 100%">Parametros Vertedero. Vista en planta</div></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12"><img style="width: inherit;" src="/static/images/vertedero.png"
-                            alt="Vista en perfil del vertedero"></div>
+                    <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/vertedero.png"
+                            alt="Vista en perfil del vertedero"><div>Parametros Vertedero. Vista en perfil</div></div>
                 </div>
 
             </div>
