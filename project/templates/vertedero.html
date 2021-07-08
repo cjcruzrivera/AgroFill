@@ -12,7 +12,8 @@
                     <div class="card-body">
                         <form action="/vertedero" method="POST" id="form" autocomplete="off" class="needs-validation"
                             novalidate>
-                            <h1 class="display-1" style="font-size: 20px;font-weight:bold;">Sección Transversal del Canal</h1>
+                            <h1 class="display-1" style="font-size: 20px;font-weight:bold;">Sección Transversal del
+                                Canal</h1>
                             <hr>
                             <div class="form-row">
                                 <div class="col-md-6">
@@ -22,30 +23,23 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" id="inlineCheckbox1" name="tipo" {%
                                             if data %} {% if data.tipo=='rectangular' %} checked {% endif %} {% endif %}
-                                            value="rectangular" {% if
-                                                history %} disabled {% endif %}>
+                                            value="rectangular" {% if history %} disabled {% endif %}>
                                         <label class="form-check-label" for="inlineCheckbox1">Rectangular</label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" id="inlineCheckbox2" name="tipo"
                                             value="trapezoidal" {% if data %} {% if data.tipo=='trapezoidal' %} checked
-                                            {% endif %} {% endif %} {% if
-                                                history %} disabled {% endif %}>
+                                            {% endif %} {% endif %} {% if history %} disabled {% endif %}>
                                         <label class="form-check-label" for="inlineCheckbox2">Trapezoidal</label>
                                     </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h1 class="display-1" style="font-size: 20px;font-weight:bold;">Datos de Entrada</h1>
                                 </div>
                             </div>
                             <hr>
                             <div class="form-row oculto d-none">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="caudalDis">Caudal de diseño <br> <b>Qd</b> (m³/s)</label>
+                                        <label class="small mb-1" for="caudalDis">Caudal de diseño <br> <b>Qd</b>
+                                            (m³/s)</label>
                                         <input style="padding-left: 9px !important;" required class="form-control "
                                             id="caudalDis" name="caudalDis" type="number" min="0" step="any" {% if
                                             history %} disabled {% endif %} placeholder="Qd" {% if data %}
@@ -79,8 +73,8 @@
                                     <div class="form-group">
                                         <label class="small mb-1" for="rugosidad">Rugosidad</label>
                                         <input required class="form-control mt-3 " id="rugosidad" name="rugosidad"
-                                            type="number" min="0.0001" step="any" {% if history %} disabled {% endif
-                                            %} placeholder="n" {% if data %} value="{{data.rugosidad}}" {% endif %} />
+                                            type="number" min="0.0001" step="any" {% if history %} disabled {% endif %}
+                                            placeholder="n" {% if data %} value="{{data.rugosidad}}" {% endif %} />
                                         <div class="invalid-feedback">Ingrese un valor de rugosidad válido</div>
                                     </div>
                                 </div>
@@ -148,34 +142,44 @@
                         <hr>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante Normal [<b>y1</b>,m]</label>
-                                    <input disabled name="" id="" class="form-control" value="{{resultados.tirante_normal}}">
+                                <div class="form-group"><label for="" class="small mb-1">Tirante Normal
+                                        [<b>y1</b>,m]</label>
+                                    <input disabled name="" id="" class="form-control"
+                                        value="{{resultados.tirante_normal}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante Crítico [<b>yc</b>, m]</label>
-                                    <input disabled name="" id="" class="form-control" value="{{resultados.tirante_critico}}">
+                                <div class="form-group"><label for="" class="small mb-1">Tirante Crítico [<b>yc</b>,
+                                        m]</label>
+                                    <input disabled name="" id="" class="form-control"
+                                        value="{{resultados.tirante_critico}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1"><span class="red"><b>*</b></span>Velocidad [<b>V</b>, m/s]</label>
+                                <div class="form-group"><label for="" class="small mb-1"><span
+                                            class="red"><b>*</b></span>Velocidad [<b>V</b>, m/s]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.velocidad}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Borde Libre [<b>Bl</b>, m]</label>
-                                    <input disabled name="" id="" class="form-control" value="{{resultados.borde_libre}}">
+                                <div class="form-group"><label for="" class="small mb-1">Borde Libre [<b>Bl</b>,
+                                        m]</label>
+                                    <input disabled name="" id="" class="form-control"
+                                        value="{{resultados.borde_libre}}">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Número de Froude [<b>F</b>]</label>
-                                    <input disabled name="" id="" class="form-control mt-3" value="{{resultados.froude}}">
+                                <div class="form-group"><label for="" class="small mb-1">Número de Froude
+                                        [<b>F</b>]</label>
+                                    <input disabled name="" id="" class="form-control mt-3"
+                                        value="{{resultados.froude}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Energía Especifica <br> [<b>E1</b>, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Energía Especifica <br>
+                                        [<b>E1</b>, m]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.energia}}">
                                 </div>
                             </div>
@@ -183,62 +187,82 @@
                         <hr>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1"><span class="red"><b>*</b></span>Ángulo [<b>θ</b>]</label>
-                                    <input disabled name="" id="" class="form-control mt-3" value="{{resultados.angulo}}">
+                                <div class="form-group"><label for="" class="small mb-1"><span
+                                            class="red"><b>*</b></span>Ángulo [<b>θ</b>]</label>
+                                    <input disabled name="" id="" class="form-control mt-3"
+                                        value="{{resultados.angulo}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Altura vertedero <br> [<b>Hv</b>, m]</label>
+                                <div class="form-group"><label for="" class="small mb-1">Altura vertedero <br>
+                                        [<b>Hv</b>, m]</label>
                                     <input disabled name="" id="" class="form-control " value="{{resultados.altura}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Ancho Entrada [<b>T</b>, m]</label>
-                                    <input disabled name="" id="" class="form-control mt-3" value="{{resultados.ancho}}">
+                                <div class="form-group"><label for="" class="small mb-1">Ancho Entrada [<b>T</b>,
+                                        m]</label>
+                                    <input disabled name="" id="" class="form-control mt-3"
+                                        value="{{resultados.ancho}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante Final [<b>y2</b>, m]</label>
-                                    <input disabled name="" id="" class="form-control mt-3" value="{{resultados.tirante_final}}">
+                                <div class="form-group"><label for="" class="small mb-1">Tirante Final [<b>y2</b>,
+                                        m]</label>
+                                    <input disabled name="" id="" class="form-control mt-3"
+                                        value="{{resultados.tirante_final}}">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Longitud Total [<b>Lt</b>, m]</label>
-                                    <input disabled name="" id="" class="form-control" value="{{resultados.longitud_total}}">
+                                <div class="form-group"><label for="" class="small mb-1">Longitud Total [<b>Lt</b>,
+                                        m]</label>
+                                    <input disabled name="" id="" class="form-control"
+                                        value="{{resultados.longitud_total}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Longitud 1 [<b>L1</b>, m]</label>
-                                    <input disabled name="" id="" class="form-control" value="{{resultados.longitud_1}}">
+                                <div class="form-group"><label for="" class="small mb-1">Longitud 1 [<b>L1</b>,
+                                        m]</label>
+                                    <input disabled name="" id="" class="form-control"
+                                        value="{{resultados.longitud_1}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Longitud 2 [<b>L2</b>, m]</label>
-                                    <input disabled name="" id="" class="form-control" value="{{resultados.longitud_2}}">
+                                <div class="form-group"><label for="" class="small mb-1">Longitud 2 [<b>L2</b>,
+                                        m]</label>
+                                    <input disabled name="" id="" class="form-control"
+                                        value="{{resultados.longitud_2}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Longitud 3 [<b>L3</b>, m]</label>
-                                    <input disabled name="" id="" class="form-control" value="{{resultados.longitud_3}}">
+                                <div class="form-group"><label for="" class="small mb-1">Longitud 3 [<b>L3</b>,
+                                        m]</label>
+                                    <input disabled name="" id="" class="form-control"
+                                        value="{{resultados.longitud_3}}">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">
                                 <div class="form-group"><label for="" class="small mb-1">Desnivel [<b>ΔZ</b>, m]</label>
-                                    <input disabled name="" id="" class="form-control mt-3" value="{{resultados.desnivel}}">
+                                    <input disabled name="" id="" class="form-control mt-3"
+                                        value="{{resultados.desnivel}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Caudal [<b>Qv</b>, m³/s]</label>
-                                    <input disabled name="" id="" class="form-control mt-3" value="{{resultados.caudal}}">
+                                <div class="form-group"><label for="" class="small mb-1">Caudal [<b>Qv</b>,
+                                        m³/s]</label>
+                                    <input disabled name="" id="" class="form-control mt-3"
+                                        value="{{resultados.caudal}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Velocidad Vertedero <br>[<b>Vv</b>, m/s]</label>
-                                    <input disabled name="" id="" class="form-control" value="{{resultados.velocidad_vertedero}}">
+                                <div class="form-group"><label for="" class="small mb-1">Velocidad Vertedero
+                                        <br>[<b>Vv</b>, m/s]</label>
+                                    <input disabled name="" id="" class="form-control"
+                                        value="{{resultados.velocidad_vertedero}}">
                                 </div>
                             </div>
 
@@ -281,25 +305,36 @@
     <div class="col-md-5">
         <div class="card mb-4">
             <div class="card-body">
-                <div class="row rect d-none">
+                <div class="row rect">
                     <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/canalR.png"
-                            alt="Sección Transversal del canal"><div>Sección Transversal del canal</div></div>
+                            alt="Sección Transversal del canal">
+                        <div>Sección Transversal del canal</div>
+                    </div>
                 </div>
                 <div class="row rect d-none">
-                    <div class="col-md-12 imagen"><img style="width: 115%;" src="/static/images/patoRect.png"
-                            alt="Vista en planta del vertedero"><div style=" width: 100%">Parametros Vertedero. Vista en planta</div></div>
+                    <div class="col-md-12 imagen"><img style="width: 100%;" src="/static/images/patoRect.png"
+                            alt="Vista en planta del vertedero">
+                        <div style=" width: 100%">Parametros Vertedero. Vista en planta</div>
+                    </div>
                 </div>
-                <div class="row trape d-none">
+                <div class="row trape">
                     <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/canaltrapez.png"
-                            alt="Sección Transversal del canal"><div>Sección Transversal del canal</div></div>
+                            alt="Sección Transversal del canal">
+                        <div>Sección Transversal del canal</div>
+                    </div>
                 </div>
                 <div class="row trape d-none">
                     <div class="col-md-12 ml-5 imagen"><img style="width: 75%;" src="/static/images/patoTrape.png"
-                            alt="Vista en planta del vertedero"><div style="margin-left: -14% !important; width: 100%">Parametros Vertedero. Vista en planta</div></div>
+                            alt="Vista en planta del vertedero">
+                        <div style="margin-left: -14% !important; width: 100%">Parametros Vertedero. Vista en planta
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
+                <div class="row d-none perfil">
                     <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/vertedero.png"
-                            alt="Vista en perfil del vertedero"><div>Parametros Vertedero. Vista en perfil</div></div>
+                            alt="Vista en perfil del vertedero">
+                        <div>Parametros Vertedero. Vista en perfil</div>
+                    </div>
                 </div>
 
             </div>
@@ -315,6 +350,7 @@
         $('input[type=radio][name=tipo]').change(function () {
             if (this.value == 'rectangular') {
                 $(".rect").removeClass('d-none');
+                $(".perfil").removeClass('d-none');
                 $(".trape").addClass('d-none');
                 //Validaciones Caudal
                 $("#caudalDis").attr('placeholder', 'Qd [≥ 0.05]');
@@ -334,6 +370,7 @@
             else if (this.value == 'trapezoidal') {
                 $(".trape").removeClass('d-none');
                 $(".rect").addClass('d-none');
+                $(".perfil").removeClass('d-none');
                 //Validaciones Caudal
                 $("#caudalDis").attr('placeholder', 'Qd [≥ 0.03]');
                 $("#caudalDis").attr('min', '0.03');
@@ -360,6 +397,7 @@
 
         if (tipo == 'rectangular') {
             $(".rect").removeClass('d-none');
+            $(".perfil").removeClass('d-none');
             $(".trape").addClass('d-none');
             //Validaciones Caudal
             $("#caudalDis").attr('placeholder', 'Qd [≥ 0.05]');
@@ -377,6 +415,7 @@
         }
         else if (tipo == 'trapezoidal') {
             $(".trape").removeClass('d-none');
+            $(".perfil").removeClass('d-none');
             $(".rect").addClass('d-none');
             //Validaciones Caudal
             $("#caudalDis").attr('placeholder', 'Qd [≥ 0.03]');
