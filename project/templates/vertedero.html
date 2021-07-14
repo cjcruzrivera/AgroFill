@@ -72,7 +72,7 @@
                                         <div class="invalid-feedback">Ingrese un valor de talud válido</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" >
                                     <div class="form-group">
                                         <label class="small mb-1" for="rugosidad">Rugosidad</label>
                                         <input required class="form-control mt-md-3 " id="rugosidad" name="rugosidad"
@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" >
                                     <div class="form-group">
                                         <label class="small mb-1" for="cotaA">Cota A (m)</label>
                                         <input required class="form-control mt-md-3 " id="cotaA" name="cotaA"
@@ -137,7 +137,7 @@
             </div>
         </div>
         {% if resultados %}
-        <div class="row">
+        <div class="row" id="toScroll">
             <div class="col-md-12">
                 <div class="car mb-4">
                     <div class="card-body">
@@ -397,7 +397,7 @@
 <script>
     $(document).ready(function () {
         var tipo = $('input[type=radio][name=tipo][checked]').val();
-
+        
         if (tipo == 'rectangular') {
             $(".rect").removeClass('d-none');
             $(".perfil").removeClass('d-none');
@@ -435,6 +435,12 @@
             $("#talud").attr('min', '0.0001');
         }
         $(".oculto").removeClass('d-none')
+        $("html").animate(
+            {
+                scrollTop: $("#toScroll").offset().top
+            },
+            2000 //speed
+        );
     })
 </script>
 {% endif %}

@@ -136,10 +136,9 @@
                                     <div class="form-group">
                                         <label for="long_vertedero" class="small mb-1">Longitud vertedero <br>Lv
                                             (m)</label>
-                                        <input {% if data %}
-                                            value="{{data.long_vertedero}}" {% endif %} disabled required min="0.0001" step="any"
-                                            type="number" name="long_vertedero" id="long_vertedero"
-                                            class="trape-input form-control" placeholder="Lv [> 0]">
+                                        <input {% if data %} value="{{data.long_vertedero}}" {% endif %} disabled
+                                            required min="0.0001" step="any" type="number" name="long_vertedero"
+                                            id="long_vertedero" class="form-control" placeholder="Lv [> 0]">
                                         <div class="invalid-feedback">Ingrese un valor de longitud mayor a cero </div>
                                     </div>
                                 </div>
@@ -265,7 +264,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="tirante_saliente">Tirante ys (m)</label>
+                                        <label  class="small mb-1" for="tirante_saliente">Tirante ys (m)</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
                                             value="{{data.tirante_saliente}}" {% endif %} required class="form-control"
                                             id="tirante_saliente" name="tirante_saliente" type="number" min="0.0001"
@@ -273,7 +272,7 @@
                                         <div class="invalid-feedback">Ingrese un valor de tirante mayor a cero</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 trape">
+                                <div class="col-md-3 trape" >
                                     <div class="form-group">
                                         <label for="talud_saliente" class="small mb-1">Talud zs</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
@@ -283,7 +282,7 @@
                                         <div class="invalid-feedback">Ingrese un valor de talud mayor a cero</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 " >
                                     <div class="form-group">
                                         <label for="cota_c" class="small mb-1">Cota C (m)</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
@@ -305,46 +304,293 @@
             </div>
         </div>
         {% if resultados %}
-        <div class="row">
+        <div class="row" id="toScroll">
             <div class="col-md-12">
                 <div class="car mb-4">
                     <div class="card-body">
-                        <h1 class="" style="font-size: 20px;font-weight:bold;">Resultados para el canal entrante</h1>
-                        <hr>
-                        <div class="form-row">
+                        <!-- Resultados solo trapezoidal -->
+                        <h1 class="trape d-none" style="font-size: 20px;font-weight:bold;">Resultados para el canal
+                            entrante</h1>
+                        <hr class="trape d-none">
+                        <div class="form-row trape d-none">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante normal
-                                        [<b>y1</b>,m]</label>
-                                    <input disabled name="" id="" class="form-control"
-                                        value="{{resultados.tirante_normal}}">
+                                <div class="form-group"><label for="" class="small mb-1">Velocidad V (m/s)</label>
+                                    <input disabled name="velocidad_trape" id="velocidad_trape" class="form-control"
+                                        value="{{resultados.velocidad_trape}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante crítico [<b>yc</b>,
-                                        m]</label>
-                                    <input disabled name="" id="" class="form-control"
+                                <div class="form-group"><label for="" class="small mb-1">Energía especifica E
+                                        (m)</label>
+                                    <input disabled name="energia_trape" id="energia_trape" class="form-control"
+                                        value="{{resultados.energia_trape}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group"><label for="" class="small mb-1">
+                                        Tirante crítico Yc (m)
+                                    </label>
+                                    <input disabled name="ycrt_trape" id="ycrt_trape" class="form-control"
+                                        value="{{resultados.ycrt_trape}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group"><label for="" class="small mb-1">Energía crítica Ec (m)</label>
+                                    <input disabled name="ecrt_trape" id="ecrt_trape" class="form-control"
+                                        value="{{resultados.ecrt_trape}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row trape d-none">
+                            <div class="col-md-3">
+                                <div class="form-group"><label for="" class="small mb-1">Tirante partidor yp (m)</label>
+                                    <input disabled name="tirante_partidor" id="tirante_partidor" class="form-control mt-md-3"
+                                        value="{{resultados.tirante_partidor}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group"><label for="" class="small mb-1">Longitud transición Lt
+                                        (m)</label>
+                                    <input disabled name="long_transicion" id="long_transicion" class="form-control"
+                                        value="{{resultados.long_transicion}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group"><label for="" class="small mb-1">Longitud transición pasante Lp
+                                        (m)</label>
+                                    <input disabled name="long_transicionp" id="long_transicionp" class="form-control"
+                                        value="{{resultados.long_transicionp}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group"><label for="" class="small mb-1">Longitud transición saliente Ls
+                                        (m)</label>
+                                    <input disabled name="long_transicions" id="long_transicions" class="form-control"
+                                        value="{{resultados.long_transicions}}">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Resto resultados -->
+                        <h1 id="tituloVariable" style="font-size: 20px;font-weight:bold;">Resultados para el canal
+                            entrante</h1>
+                        <hr>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <div class="form-group"><label for="velocidad" class="small mb-1">Velocidad V
+                                        (m/s)</label>
+                                    <input disabled name="velocidad" id="velocidad" class="form-control"
+                                        value="{{resultados.velocidad}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group"><label for="energia_especifica" class="small mb-1">Energía
+                                        especifica E
+                                        (m)</label>
+                                    <input disabled name="energia_especifica" id="energia_especifica"
+                                        class="form-control" value="{{resultados.energia_especifica}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group"><label for="tirante_critico" class="small mb-1">
+                                        Tirante crítico Yc (m)
+                                    </label>
+                                    <input disabled name="tirante_critico" id="tirante_critico" class="form-control"
                                         value="{{resultados.tirante_critico}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1"><span
-                                            class="red"><b>*</b></span>Velocidad [<b>V</b>, m/s]</label>
-                                    <input disabled name="" id="" class="form-control" value="{{resultados.velocidad}}">
+                                <div class="form-group"><label for="energia_critica" class="small mb-1">Energía crítica
+                                        Ec (m)</label>
+                                    <input disabled name="energia_critica" id="energia_critica" class="form-control"
+                                        value="{{resultados.energia_critica}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Borde libre [<b>Bl</b>,
-                                        m]</label>
-                                    <input disabled name="" id="" class="form-control"
-                                        value="{{resultados.borde_libre}}">
+                                <div class="form-group"><label for="froude" class="small mb-1">No. Froude (m)</label>
+                                    <input disabled name="froude" id="froude" class="form-control"
+                                        value="{{resultados.froude}}">
                                 </div>
                             </div>
                         </div>
+                        <h1 style="font-size: 20px;font-weight:bold;">Resultados para el partidor</h1>
+                        <hr>
+                        <div class="form-row">
+                            <div class="col-md-3 movil d-none">
+                                <div class="form-group">
+                                    <label for="angulo_inclinacion" class="small mb-1">
+                                        Ángulo inclinación de la hoja
+                                        metalica (α º)
+                                    </label>
+                                    <input disabled name="angulo_inclinacion" id="angulo_inclinacion"
+                                        class="form-control" value="{{resultados.angulo_inclinacion}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="longitud_lamina" class="small mb-1">
+                                        Longitud de la lámina Ll(m)
+                                    </label>
+                                    <input disabled name="longitud_lamina" id="longitud_lamina" class="form-control"
+                                        value="{{resultados.longitud_lamina}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="altura_vertedero" class="small mb-1">
+                                        Altura vertedero Hv (m)
+                                    </label>
+                                    <input disabled name="altura_vertedero" id="altura_vertedero" class="form-control mt-md-3"
+                                        value="{{resultados.altura_vertedero}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="carga_hidraulica" class="small mb-1">
+                                        Carga hidráulica H1 (m)
+                                    </label>
+                                    <input disabled name="carga_hidraulica" id="carga_hidraulica" class="form-control mt-md-3"
+                                        value="{{resultados.carga_hidraulica}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="ancho_vertedero" class="small mb-1">
+                                        Ancho vertedero e (m)
+                                    </label>
+                                    <input disabled name="ancho_vertedero" id="ancho_vertedero" class="form-control mt-md-3"
+                                        value="{{resultados.ancho_vertedero}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="long_vertedero_max" class="small mb-1">
+                                        Longitud máxima vertedero Lv (m)
+                                    </label>
+                                    <input disabled name="long_vertedero_max" id="long_vertedero_max"
+                                        class="form-control" value="{{resultados.long_vertedero_max}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Ancho_qpasante" class="small mb-1">
+                                        Ancho para Qp b2 (m)
+                                    </label>
+                                    <input disabled name="Ancho_qpasante" id="Ancho_qpasante" class="form-control mt-md-3"
+                                        value="{{resultados.Ancho_qpasante}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Ancho_qsaliente" class="small mb-1">
+                                        Ancho para Qs b3 (m)
+                                    </label>
+                                    <input disabled name="Ancho_qsaliente" id="Ancho_qsaliente" class="form-control mt-md-3"
+                                        value="{{resultados.Ancho_qsaliente}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="prof_colchon" class="small mb-1">
+                                        Profundida colchón Δz (m)
+                                    </label>
+                                    <input disabled name="prof_colchon" id="prof_colchon" class="form-control"
+                                        value="{{resultados.prof_colchon}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="long_colchon" class="small mb-1">
+                                        Longitud colchón Lc (m)
+                                    </label>
+                                    <input disabled name="long_colchon" id="long_colchon" class="form-control"
+                                        value="{{resultados.long_colchon}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="carga_hidraulicap" class="small mb-1">
+                                        Carga hidraulica Hp (m)
+                                    </label>
+                                    <input disabled name="carga_hidraulicap" id="carga_hidraulicap" class="form-control mt-md-3"
+                                        value="{{resultados.carga_hidraulicap}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="carga_hidraulicas" class="small mb-1">
+                                        Carga hidráulica Hs (m)
+                                    </label>
+                                    <input disabled name="carga_hidraulicas" id="carga_hidraulicas" class="form-control mt-md-3"
+                                        value="{{resultados.carga_hidraulicas}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="cota_1" class="small mb-1">
+                                        Cota 1 (m)
+                                    </label>
+                                    <input disabled name="cota_1" id="cota_1" class="form-control "
+                                        value="{{resultados.cota_1}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="cota_2" class="small mb-1">
+                                        Cota 2 (m)
+                                    </label>
+                                    <input disabled name="cota_2" id="cota_2" class="form-control"
+                                        value="{{resultados.cota_2}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="cota_3" class="small mb-1">
+                                        Cota 3 (m)
+                                    </label>
+                                    <input disabled name="cota_3" id="cota_3" class="form-control"
+                                        value="{{resultados.cota_3}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="cota_4" class="small mb-1">
+                                        Cota 4 de Cp (m)
+                                    </label>
+                                    <input disabled name="cota_4" id="cota_4" class="form-control"
+                                        value="{{resultados.cota_4}}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="cota_5" class="small mb-1">
+                                        Cota 5 de Cs (m)
+                                    </label>
+                                    <input disabled name="cota_5" id="cota_5" class="form-control"
+                                        value="{{resultados.cota_5}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Condiciones de diseño -->
                         <div class="form-row">
                             <div class="col-md-12">
-                                <p class="red mb-0"> <b>*Condiciones de Diseño:</b></p> <b>V ≤ 1.0 m/s</b><br>
-                                <b>45° < θ < 70°</b> <br>
-                                        En caso de no cumplirse, verificar relación entre Qd y b y/o modificar ΔH
+                                <p class="red mb-0"> <b>Condiciones de Diseño:</b></p>
+                                    <ul>
+                                        <li>
+                                            Froude < 0.45 <i class="fa fa-arrow-right" aria-hidden="true"></i> para garantizar flujo subcritico antes de la división de caudal
+                                        </li>
+                                        <li>
+                                            Si H1/H2 < 0.8 <i class="fa fa-arrow-right" aria-hidden="true"></i>	Existe flujo libre en el canal pasante
+                                        </li>
+                                        <li>
+                                            Si H1/H3 < 0.8 <i class="fa fa-arrow-right" aria-hidden="true"></i>	Existe flujo libre en el canal saliente
+                                        </li>
+                                        <li>
+                                            Si Av < 0.3 <i class="fa fa-arrow-right" aria-hidden="true"></i> No es necesario determinar Lc y espesor del colchón amortiguador 
+                                            <!-- ya que Av es menor a 0.3 cm -->
+
+                                        </li>
+                                    </ul>
                             </div>
                         </div>
                     </div>
@@ -372,7 +618,7 @@
                 <div class="row movil d-none">
                     <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/movilColor.png"
                             alt="Parametros partidor movil. Vista en planta">
-                        <div class="mt-3 mb-5">Parametros partidor movil. Vista en planta</div>
+                        <div class="mt-3 mb-5">Parametros partidor móvil. Vista en planta</div>
                     </div>
                 </div>
                 <div class="row fijo d-none">
@@ -384,13 +630,13 @@
                 <div class="row perfil d-none">
                     <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/partidorPerfil.png"
                             alt="Parametros partidos. Vista en perfil">
-                        <div class="mt-3 mb-5">Parametros partidos. Vista en perfil</div>
+                        <div class="mt-3 mb-5">Parametros partidor. Vista en perfil</div>
                     </div>
                 </div>
                 <div class="row movilR d-none">
-                    <div class="col-md-12 imagen"><img style="width: inherit;" id="movilR" src="/static/images/partidorPerfil.png"
-                            alt="Parametros partidos. Vista en perfil">
-                        <div class="mt-3 mb-5">Parametros partidos. Vista en perfil</div>
+                    <div class="col-md-12 imagen"><img style="width: inherit;" id="movilR" src="#"
+                            alt="Ángulo de inclinación">
+                        <div class="mt-3 mb-5">Parametros partidor móvil. Ángulo de inclinación lámina de acero</div>
                     </div>
                 </div>
             </div>
@@ -407,14 +653,16 @@
             if (this.value == 'movil') {
                 $(".movil").removeClass('d-none');
                 $(".fijo").addClass('d-none');
+                $("#cota_1").removeClass('mt-md-3');
             } else {
                 $(".fijo").removeClass('d-none');
                 $(".movil").addClass('d-none');
+                $("#cota_1").addClass('mt-md-3');
             }
             $(".perfil").removeClass('d-none')
         });
 
-        $('#base_entrante').change(function(){
+        $('#base_entrante').change(function () {
             $("#long_vertedero").val(this.value)
         })
 
@@ -423,16 +671,75 @@
                 $(".rect").removeClass('d-none');
                 $(".trape").addClass('d-none');
                 $("#cota_a").addClass('mt-md-3');
-                $(".trape-input").prop('required', false);
+                $(".trape-input").removeAttr('required');
             }
             else if (this.value == 'trapezoidal') {
                 $(".trape").removeClass('d-none');
                 $("#cota_a").removeClass('mt-md-3');
                 $(".rect").addClass('d-none');
-                $(".trape-input").prop('required', true);
+                $(".trape-input").attr('required', true);
             }
             $(".oculto").removeClass('d-none')
         });
     })
 </script>
+
+{% if data %}
+
+<script>
+    $(document).ready(function () {
+        $(".oculto").removeClass('d-none');
+        $(".perfil").removeClass('d-none');
+        
+        var tipo = $('input[type=radio][name=tipo][checked]').val();
+        var tipoPart = $('input[type=radio][name=tipoPart][checked]').val();
+
+        if (tipoPart == 'movil') {
+            $(".movil").removeClass('d-none');
+            $(".movilR").removeClass('d-none');
+            $(".fijo").addClass('d-none');
+
+            var b2 = $("#Ancho_qpasante").val();
+            var b3 = $("#Ancho_qsaliente").val();
+
+            if (parseFloat(b2) > parseFloat(b3)) {
+                $("#movilR").attr("src", "/static/images/laminaAcero1.png");
+            } else if (parseFloat(b2) < parseFloat(b3)) {
+                $("#movilR").attr("src", "/static/images/laminaAcero2.png");
+            } else {
+                $("#movilR").attr("src", "/static/images/laminaAcero3.png");
+            }
+            $("#cota_1").removeClass('mt-md-3');
+        } else {
+            $(".fijo").removeClass('d-none');
+            $(".movil").addClass('d-none');
+            $("#cota_1").addClass('mt-md-3');
+        }
+        
+        if (tipo == 'rectangular') {
+            $(".rect").removeClass('d-none');
+            $(".trape").addClass('d-none');
+            $("#cota_a").addClass('mt-md-3');
+            $(".trape-input").removeAttr('required').val('');
+            $("#tituloVariable").text("Resultados para el canal entrante y sobre el vertedero");
+
+        }
+        else if (tipo == 'trapezoidal') {
+            $(".trape").removeClass('d-none');
+            $("#cota_a").removeClass('mt-md-3');
+            $(".rect").addClass('d-none');
+            $(".trape-input").attr('required', true);
+            $("#tituloVariable").text("Resultados para el vertedero");
+        }
+        $("html").animate(
+            {
+                scrollTop: $("#toScroll").offset().top
+            },
+            2000 //speed
+        );
+    })
+</script>
+{% endif %}
+
+
 {% endblock %}
