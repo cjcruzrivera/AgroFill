@@ -25,7 +25,7 @@ def tirante_crt_trape(Q, b, z):
     return yc
 
 
-def calculo_partidor(Q, y, b, z, ancho, n, cota, s, Qp, yp, bp, zp, Qs, ys, bs, zs, angulo):
+def calculo_partidor(Q, y, b, z, ancho, n, cota_A, s, Qp, yp, bp, zp, Qs, ys, bs, zs, angulo, cota_B, cota_C):
     array_return = {}
     gravedad = 9.81
     area = (b + z*y)*y
@@ -75,7 +75,6 @@ def calculo_partidor(Q, y, b, z, ancho, n, cota, s, Qp, yp, bp, zp, Qs, ys, bs, 
     tirante_critico = (q_unitario**2 / gravedad) ** (1/3)
     energia_critica = tirante_critico * 3/2
     energia_especifica = y + velocidad**2 / (2*gravedad)
-
     #Calculos del partidor
     altura_verte = energia_especifica - energia_critica
     carga_hidrau = 1.5 * tirante_critico
@@ -93,21 +92,32 @@ def calculo_partidor(Q, y, b, z, ancho, n, cota, s, Qp, yp, bp, zp, Qs, ys, bs, 
         long_d = 4.30 * altura_verte * num_caida**0.27
         long_resalto = 5 * (y2 - y1)
         long_colchon = long_d + long_resalto
+        cota_3 = cota_A - espesor
         array_return['espesor'] = round(espesor, 3)
         array_return['long_colchon'] = round(long_colchon, 3)
+        array_return['cota_3'] = round(cota_3, 3)
 
     #Perdias en canales pasante y saliente
     area_pasante = (bp + zp*yp)*yp
     vel_pasante = Qp / area_pasante
     carga_pasante = yp + (vel_pasante**2)/(2*gravedad)
-    total_pasante = carga_pasante / carga_hidrau
+    total_pasante =  carga_hidrau / carga_pasante
     
     area_saliente = (bs + zs*ys)*ys
     vel_saliente = Qs / area_saliente
     carga_saliente = ys + (vel_saliente**2)/(2*gravedad)
-    total_saliente = carga_saliente / carga_hidrau
+    total_saliente =  carga_hidrau / carga_saliente
 
-    print (carga_pasante)
+    #Cotas
+    cota_1 = cota_A + altura_verte + carga_hidrau
+    cota_2 = cota_A + altura_verte + tirante_critico
+    cota_4 = cota_B + carga_pasante
+    cota_5 = cota_C + carga_saliente
+
+    #Longitudes de la estructura
+    long_hoja = 10 * tirante_critico
+    long_estructura = 37 * tirante_critico
+
     #Calculo transición de canal rectangular a canal trapezoidal
     if es_trapezoidal:
         espejo_qpasante = long_pasante
@@ -122,7 +132,6 @@ def calculo_partidor(Q, y, b, z, ancho, n, cota, s, Qp, yp, bp, zp, Qs, ys, bs, 
         array_return['long_transsa'] = round(long_transsa, 3)
 
 
-    
     array_return['velocidad'] = round(velocidad, 3)
     array_return['numero_froude'] = round(numero_froude, 3)
     array_return['tirante_critico'] = round(tirante_critico, 3)
@@ -138,12 +147,39 @@ def calculo_partidor(Q, y, b, z, ancho, n, cota, s, Qp, yp, bp, zp, Qs, ys, bs, 
     array_return['total_saliente'] = round(total_saliente, 3)
     array_return['carga_pasante'] = round(carga_pasante, 3)
     array_return['carga_saliente'] = round(carga_saliente, 3)
+    array_return['cota_1'] = round(cota_1, 3)
+    array_return['cota_2'] = round(cota_2, 3)
+    array_return['cota_4'] = round(cota_4, 3)
+    array_return['cota_5'] = round(cota_5, 3)
+    array_return['long_hoja'] = round(long_hoja, 3)
+    array_return['long_estructura'] = round(long_estructura, 3)
 
 
     return array_return
 
+def partidor_movil(Q, y, b, z, ancho, n, cota_A, s, Qp, yp, bp, zp, Qs, ys, bs, zs, angulo, cota_B, cota_C):
+    array_return1 = {}
+    partidor_fijo = calculo_partidor(Q, y, b, z, ancho, n, cota_A, s, Qp, yp, bp, zp, Qs, ys, bs, zs, angulo, cota_B, cota_C)
+    ancho_pasante = partidor_fijo['long_pasante']
+    hipotenusa = partidor_fijo['long_hoja']
+    localizacion_hoja = b/2
 
+    if ancho_pasante > localizacion_hoja:
+        faltante = ancho_pasante - localizacion_hoja
+    else:
+        faltante = localizacion_hoja - ancho_pasante
+    
+    angulo_alfa = math.asin(faltante/hipotenusa)
+    grados_alfa = angulo_alfa* 180 / math.pi
+    angulo_final = 90 - grados_alfa
 
+    carga_movil = (Q / (1.235*hipotenusa))**(2/3)
+    altura_movil = y - carga_movil
+    
+    array_return1['angulo_final'] = round(angulo_final, 3)
+    array_return1['carga_movil'] = round(carga_movil, 3)
+    array_return1['altura_movil'] = round(altura_movil, 3)
+    
 
-
+    return array_return1
 

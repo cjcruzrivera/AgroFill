@@ -12,9 +12,9 @@
                     <div class="card-body">
                         <form action="/vertedero" method="POST" id="form" autocomplete="off" class="needs-validation"
                             novalidate>
-                            <h1 class="display-1" style="font-size: 20px;font-weight:bold;">Sección Transversal del
+                            <h1 class="" style="font-size: 20px;font-weight:bold;">Sección Transversal del
                                 Canal</h1>
-                            <hr>
+                            <hr class="mt-0">
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <label class="mt-2">Seleccione el tipo de sección</label>
@@ -34,7 +34,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr>
+                            <hr class="mt-1 mb-2 oculto d-none">
+                            <h1 class="oculto d-none" style="font-size: 20px;font-weight:bold;">Datos de Entrada</h1>
+                            <hr class="mt-0 mb-2 oculto d-none">
+                            
                             <div class="form-row oculto d-none">
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -51,8 +54,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="base">Base del Canal <b>b</b> (m)</label>
-                                        <input required class="form-control mt-3" id="base" name="base" type="number"
+                                        <label class="small mb-1" for="base">Base del canal <b>b</b> (m)</label>
+                                        <input required class="form-control mt-md-3" id="base" name="base" type="number"
                                             min="0" step="any" placeholder="b []" {% if history %} disabled {% endif %}
                                             {% if data %} value="{{data.base}}" {% endif %} />
                                         <div id="mensajeBase" class="invalid-feedback">Ingrese un valor de base del
@@ -63,16 +66,16 @@
                                 <div class="col-md-3" id="talud_form">
                                     <div class="form-group">
                                         <label class="small mb-1" for="talud">Talud <b>z</b></label>
-                                        <input required class="form-control mt-3 " id="talud" name="talud" type="number"
-                                            min="0.0001" step="0.0001" placeholder="z" {% if history %} disabled {%
-                                            endif %} {% if data %} value="{{data.talud}}" {% endif %} />
+                                        <input required class="form-control mt-md-3 " id="talud" name="talud"
+                                            type="number" min="0.0001" step="0.0001" placeholder="z" {% if history %}
+                                            disabled {% endif %} {% if data %} value="{{data.talud}}" {% endif %} />
                                         <div class="invalid-feedback">Ingrese un valor de talud válido</div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="small mb-1" for="rugosidad">Rugosidad</label>
-                                        <input required class="form-control mt-3 " id="rugosidad" name="rugosidad"
+                                        <input required class="form-control mt-md-3 " id="rugosidad" name="rugosidad"
                                             type="number" min="0.0001" step="any" {% if history %} disabled {% endif %}
                                             placeholder="n" {% if data %} value="{{data.rugosidad}}" {% endif %} />
                                         <div class="invalid-feedback">Ingrese un valor de rugosidad válido</div>
@@ -83,7 +86,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="small mb-1" for="pendiente">Pendiente del canal</label>
-                                        <input required class="form-control mt-3" id="pendiente" name="pendiente"
+                                        <input required class="form-control mt-md-3" id="pendiente" name="pendiente"
                                             type="number" min="0.0001" step="any" {% if history %} disabled {% endif %}
                                             placeholder="s [> 0] " {% if data %} value="{{data.pendiente}}" {% endif
                                             %} />
@@ -93,8 +96,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="alturaMuro">Altura Muros <b>Hm</b> (m)</label>
-                                        <input required class="form-control mt-3" id="alturaMuro" name="alturaMuro"
+                                        <label class="small mb-1" for="alturaMuro">Altura muros <b>Hm</b> (m)</label>
+                                        <input required class="form-control mt-md-3" id="alturaMuro" name="alturaMuro"
                                             type="number" min="0.0001" step="any" {% if history %} disabled {% endif %}
                                             placeholder="Hm [> 0]" {% if data %} value="{{data.alturaMuro}}" {% endif
                                             %} />
@@ -105,8 +108,8 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="small mb-1" for="cotaA">Cota A (m)</label>
-                                        <input required class="form-control mt-3 " id="cotaA" name="cotaA" type="number"
-                                            min="0" step="any" placeholder="cota [≥ 0]" {% if data %}
+                                        <input required class="form-control mt-md-3 " id="cotaA" name="cotaA"
+                                            type="number" min="0" step="any" placeholder="cota [≥ 0]" {% if data %}
                                             value="{{data.cotaA}}" {% endif %} {% if history %} disabled {% endif %} />
                                         <div class="invalid-feedback">Ingrese un valor de cota A mayor o igual a cero
                                         </div>
@@ -114,7 +117,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="carga">Carga Hidraulica <b>ΔH(m)</b> [0.05 - 0.10
+                                        <label class="small mb-1" for="carga">Carga hidráulica <b>ΔH(m)</b> [0.05 - 0.10
                                             m]</label>
                                         <input required class="form-control" id="carga" name="carga" type="number"
                                             min="0.05" max="0.1" step="0.001" {% if history %} disabled {% endif %}
@@ -138,18 +141,18 @@
             <div class="col-md-12">
                 <div class="car mb-4">
                     <div class="card-body">
-                        <h1 class="display-1" style="font-size: 20px;font-weight:bold;">Resultados del diseño</h1>
+                        <h1 class="" style="font-size: 20px;font-weight:bold;">Resultados del diseño</h1>
                         <hr>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante Normal
+                                <div class="form-group"><label for="" class="small mb-1">Tirante normal
                                         [<b>y1</b>,m]</label>
                                     <input disabled name="" id="" class="form-control"
                                         value="{{resultados.tirante_normal}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante Crítico [<b>yc</b>,
+                                <div class="form-group"><label for="" class="small mb-1">Tirante crítico [<b>yc</b>,
                                         m]</label>
                                     <input disabled name="" id="" class="form-control"
                                         value="{{resultados.tirante_critico}}">
@@ -162,7 +165,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Borde Libre [<b>Bl</b>,
+                                <div class="form-group"><label for="" class="small mb-1">Borde libre [<b>Bl</b>,
                                         m]</label>
                                     <input disabled name="" id="" class="form-control"
                                         value="{{resultados.borde_libre}}">
@@ -173,12 +176,12 @@
                             <div class="col-md-3">
                                 <div class="form-group"><label for="" class="small mb-1">Número de Froude
                                         [<b>F</b>]</label>
-                                    <input disabled name="" id="" class="form-control mt-3"
+                                    <input disabled name="" id="" class="form-control mt-md-3"
                                         value="{{resultados.froude}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Energía Especifica <br>
+                                <div class="form-group"><label for="" class="small mb-1">Energía especifica <br>
                                         [<b>E1</b>, m]</label>
                                     <input disabled name="" id="" class="form-control" value="{{resultados.energia}}">
                                 </div>
@@ -189,7 +192,7 @@
                             <div class="col-md-3">
                                 <div class="form-group"><label for="" class="small mb-1"><span
                                             class="red"><b>*</b></span>Ángulo [<b>θ</b>]</label>
-                                    <input disabled name="" id="" class="form-control mt-3"
+                                    <input disabled name="" id="" class="form-control mt-md-3"
                                         value="{{resultados.angulo}}">
                                 </div>
                             </div>
@@ -200,23 +203,23 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Ancho Entrada [<b>T</b>,
+                                <div class="form-group"><label for="" class="small mb-1">Ancho entrada [<b>T</b>,
                                         m]</label>
-                                    <input disabled name="" id="" class="form-control mt-3"
+                                    <input disabled name="" id="" class="form-control mt-md-3"
                                         value="{{resultados.ancho}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Tirante Final [<b>y2</b>,
+                                <div class="form-group"><label for="" class="small mb-1">Tirante final [<b>y2</b>,
                                         m]</label>
-                                    <input disabled name="" id="" class="form-control mt-3"
+                                    <input disabled name="" id="" class="form-control mt-md-3"
                                         value="{{resultados.tirante_final}}">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Longitud Total [<b>Lt</b>,
+                                <div class="form-group"><label for="" class="small mb-1">Longitud total [<b>Lt</b>,
                                         m]</label>
                                     <input disabled name="" id="" class="form-control"
                                         value="{{resultados.longitud_total}}">
@@ -247,19 +250,19 @@
                         <div class="form-row">
                             <div class="col-md-3">
                                 <div class="form-group"><label for="" class="small mb-1">Desnivel [<b>ΔZ</b>, m]</label>
-                                    <input disabled name="" id="" class="form-control mt-3"
+                                    <input disabled name="" id="" class="form-control mt-md-3"
                                         value="{{resultados.desnivel}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group"><label for="" class="small mb-1">Caudal [<b>Qv</b>,
                                         m³/s]</label>
-                                    <input disabled name="" id="" class="form-control mt-3"
+                                    <input disabled name="" id="" class="form-control mt-md-3"
                                         value="{{resultados.caudal}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-group"><label for="" class="small mb-1">Velocidad Vertedero
+                                <div class="form-group"><label for="" class="small mb-1">Velocidad vertedero
                                         <br>[<b>Vv</b>, m/s]</label>
                                     <input disabled name="" id="" class="form-control"
                                         value="{{resultados.velocidad_vertedero}}">
@@ -308,32 +311,32 @@
                 <div class="row rect">
                     <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/canalR.png"
                             alt="Sección Transversal del canal">
-                        <div>Sección Transversal del canal rectangular</div>
+                        <div>Sección transversal del canal rectangular</div>
                     </div>
                 </div>
                 <div class="row rect d-none">
                     <div class="col-md-12 imagen"><img style="width: 100%;" src="/static/images/patoRect.png"
                             alt="Vista en planta del vertedero">
-                        <div style=" width: 100%">Parametros Vertedero. Vista en planta</div>
+                        <div style=" width: 100%">Parametros vertedero. Vista en planta</div>
                     </div>
                 </div>
                 <div class="row trape">
                     <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/canaltrapez.png"
                             alt="Sección Transversal del canal">
-                        <div>Sección Transversal del canal trapezoidal</div>
+                        <div>Sección transversal del canal trapezoidal</div>
                     </div>
                 </div>
                 <div class="row trape d-none">
                     <div class="col-md-12 ml-5 imagen"><img style="width: 75%;" src="/static/images/patoTrape.png"
                             alt="Vista en planta del vertedero">
-                        <div style="margin-left: -14% !important; width: 100%">Parametros Vertedero. Vista en planta
+                        <div style="margin-left: -14% !important; width: 100%">Parametros vertedero. Vista en planta
                         </div>
                     </div>
                 </div>
                 <div class="row d-none perfil">
                     <div class="col-md-12 imagen"><img style="width: inherit;" src="/static/images/vertedero.png"
                             alt="Vista en perfil del vertedero">
-                        <div>Parametros Vertedero. Vista en perfil</div>
+                        <div>Parametros vertedero. Vista en perfil</div>
                     </div>
                 </div>
 
