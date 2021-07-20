@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="base_entrante">Base del canal b (m)</label>
+                                        <label class="small mb-1" for="base_entrante">Base del canal be (m)</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
                                             value="{{data.base_entrante}}" {% endif %} required class="form-control"
                                             id="base_entrante" name="base_entrante" type="number" min="0.0001"
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="small mb-1" for="tirante_entrante">Tirante y (m)</label>
+                                        <label class="small mb-1" for="tirante_entrante">Tirante ye (m)</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
                                             value="{{data.tirante_entrante}}" {% endif %} required class="form-control"
                                             id="tirante_entrante" name="tirante_entrante" type="number" min="0.0001"
@@ -428,7 +428,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="longitud_lamina" class="small mb-1">
-                                        Longitud de la lámina Ll(m)
+                                        Longitud de la lámina L(m)
                                     </label>
                                     <input disabled name="longitud_lamina" id="longitud_lamina" class="form-control"
                                         value="{{resultados.longitud_lamina}}">
@@ -586,8 +586,8 @@
                                             Si H1/H3 < 0.8 <i class="fa fa-arrow-right" aria-hidden="true"></i>	Existe flujo libre en el canal saliente
                                         </li>
                                         <li>
-                                            Si Av < 0.3 <i class="fa fa-arrow-right" aria-hidden="true"></i> No es necesario determinar Lc y espesor del colchón amortiguador 
-                                            <!-- ya que Av es menor a 0.3 cm -->
+                                            Si Hv < 0.3 <i class="fa fa-arrow-right" aria-hidden="true"></i> No es necesario determinar Lc y espesor del colchón amortiguador 
+                                            <!-- ya que Hv es menor a 0.3 cm -->
 
                                         </li>
                                     </ul>
