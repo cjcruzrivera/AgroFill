@@ -52,8 +52,6 @@ def logout():
 def login_post():
     email = request.form.get('email')
     password = request.form.get('password')
-    print(email)
-    print(password)
     user = User.query.filter_by(email=email).first()
 
     # check if the user actually exists
