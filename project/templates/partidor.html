@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 
+{% block extraCss %}
+<link rel="stylesheet" href="/static/assets/css/Ultimate-Sidebar-Menu.css">
+
+<style>
+    .caudal {
+        padding-left: 10px !important;
+        padding-right: 3px !important;
+    }
+</style>
+{% endblock %}
+
+
 {% block content %}
 <h1 class="mt-4">Partidor Proporcional </h1>
 <hr style="border-top: 3px solid rgba(49, 165, 214, 0.5) !important">
@@ -36,8 +48,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr class="oculto d-none">
-                            <div class="form-row oculto d-none">
+                            <hr class="oculto_tipo d-none">
+                            <div class="form-row oculto_tipo d-none">
                                 <div class="col-md-6">
                                     <label class="mt-2">Seleccione el tipo de partidor</label>
                                 </div>
@@ -70,10 +82,11 @@
                                     <div class="form-group">
                                         <label class="small mb-1" for="caudal">Caudal Qe (m³/s)</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
-                                            value="{{data.caudal_entrante}}" {% endif %} required class="form-control"
-                                            id="caudal_entrante" name="caudal_entrante" type="number" min="0.0001"
-                                            max="0.5" step="any" placeholder="Qe [≤ 0.5]" />
-                                        <div class="invalid-feedback">Ingrese un valor de caudal mayor a cero y menor o
+                                            value="{{data.caudal_entrante}}" {% endif %} required
+                                            class="form-control caudal" id="caudal_entrante" name="caudal_entrante"
+                                            type="number" min="0.0001" max="0.5" step="any" placeholder="Qe [≤ 0.5]" />
+                                        <div class="caudal-error invalid-feedback">Ingrese un valor de caudal mayor a
+                                            cero y menor o
                                             igual a
                                             0.5 m³/s</div>
                                     </div>
@@ -179,10 +192,11 @@
                                     <div class="form-group">
                                         <label class="small mb-1" for="caudal_pasante">Caudal Qp (m³/s)</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
-                                            value="{{data.caudal_pasante}}" {% endif %} required class="form-control"
-                                            id="caudal_pasante" name="caudal_pasante" type="number" min="0.0001"
-                                            max="0.5" step="any" placeholder="Qp [≤ 0.5]" />
-                                        <div class="invalid-feedback">Ingrese un valor de caudal mayor a cero y menor o
+                                            value="{{data.caudal_pasante}}" {% endif %} required
+                                            class="form-control caudal" id="caudal_pasante" name="caudal_pasante"
+                                            type="number" min="0.0001" max="0.5" step="any" placeholder="Qp [≤ 0.5]" />
+                                        <div class="caudal-error invalid-feedback">Ingrese un valor de caudal mayor a
+                                            cero y menor o
                                             igual a
                                             0.5 m³/s</div>
                                     </div>
@@ -243,10 +257,11 @@
                                     <div class="form-group">
                                         <label class="small mb-1" for="caudal_saliente">Caudal Qs (m³/s)</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
-                                            value="{{data.caudal_saliente}}" {% endif %} required class="form-control"
-                                            id="caudal_saliente" name="caudal_saliente" type="number" min="0.0001"
-                                            max="0.5" step="any" placeholder="Qs [≤ 0.5]" />
-                                        <div class="invalid-feedback">Ingrese un valor de caudal mayor a cero y menor o
+                                            value="{{data.caudal_saliente}}" {% endif %} required
+                                            class="form-control caudal" id="caudal_saliente" name="caudal_saliente"
+                                            type="number" min="0.0001" max="0.5" step="any" placeholder="Qs [≤ 0.5]" />
+                                        <div class="caudal-error invalid-feedback">Ingrese un valor de caudal mayor a
+                                            cero y menor o
                                             igual a
                                             0.5 m³/s</div>
                                     </div>
@@ -264,7 +279,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label  class="small mb-1" for="tirante_saliente">Tirante ys (m)</label>
+                                        <label class="small mb-1" for="tirante_saliente">Tirante ys (m)</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
                                             value="{{data.tirante_saliente}}" {% endif %} required class="form-control"
                                             id="tirante_saliente" name="tirante_saliente" type="number" min="0.0001"
@@ -272,7 +287,7 @@
                                         <div class="invalid-feedback">Ingrese un valor de tirante mayor a cero</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 trape" >
+                                <div class="col-md-3 trape">
                                     <div class="form-group">
                                         <label for="talud_saliente" class="small mb-1">Talud zs</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
@@ -282,7 +297,7 @@
                                         <div class="invalid-feedback">Ingrese un valor de talud mayor a cero</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 " >
+                                <div class="col-md-3 ">
                                     <div class="form-group">
                                         <label for="cota_c" class="small mb-1">Cota C (m)</label>
                                         <input {% if history %} disabled {% endif %} {% if data %}
@@ -344,8 +359,8 @@
                         <div class="form-row trape d-none">
                             <div class="col-md-3">
                                 <div class="form-group"><label for="" class="small mb-1">Tirante partidor yp (m)</label>
-                                    <input disabled name="tirante_partidor" id="tirante_partidor" class="form-control mt-md-3"
-                                        value="{{resultados.tirante_partidor}}">
+                                    <input disabled name="tirante_partidor" id="tirante_partidor"
+                                        class="form-control mt-md-3" value="{{resultados.tirante_partidor}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -439,8 +454,8 @@
                                     <label for="altura_vertedero" class="small mb-1">
                                         Altura vertedero Hv (m)
                                     </label>
-                                    <input disabled name="altura_vertedero" id="altura_vertedero" class="form-control mt-md-3"
-                                        value="{{resultados.altura_vertedero}}">
+                                    <input disabled name="altura_vertedero" id="altura_vertedero"
+                                        class="form-control mt-md-3" value="{{resultados.altura_vertedero}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -448,8 +463,8 @@
                                     <label for="carga_hidraulica" class="small mb-1">
                                         Carga hidráulica H1 (m)
                                     </label>
-                                    <input disabled name="carga_hidraulica" id="carga_hidraulica" class="form-control mt-md-3"
-                                        value="{{resultados.carga_hidraulica}}">
+                                    <input disabled name="carga_hidraulica" id="carga_hidraulica"
+                                        class="form-control mt-md-3" value="{{resultados.carga_hidraulica}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -457,8 +472,8 @@
                                     <label for="ancho_vertedero" class="small mb-1">
                                         Ancho vertedero e (m)
                                     </label>
-                                    <input disabled name="ancho_vertedero" id="ancho_vertedero" class="form-control mt-md-3"
-                                        value="{{resultados.ancho_vertedero}}">
+                                    <input disabled name="ancho_vertedero" id="ancho_vertedero"
+                                        class="form-control mt-md-3" value="{{resultados.ancho_vertedero}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -475,8 +490,8 @@
                                     <label for="Ancho_qpasante" class="small mb-1">
                                         Ancho para Qp b2 (m)
                                     </label>
-                                    <input disabled name="Ancho_qpasante" id="Ancho_qpasante" class="form-control mt-md-3"
-                                        value="{{resultados.Ancho_qpasante}}">
+                                    <input disabled name="Ancho_qpasante" id="Ancho_qpasante"
+                                        class="form-control mt-md-3" value="{{resultados.Ancho_qpasante}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -484,8 +499,8 @@
                                     <label for="Ancho_qsaliente" class="small mb-1">
                                         Ancho para Qs b3 (m)
                                     </label>
-                                    <input disabled name="Ancho_qsaliente" id="Ancho_qsaliente" class="form-control mt-md-3"
-                                        value="{{resultados.Ancho_qsaliente}}">
+                                    <input disabled name="Ancho_qsaliente" id="Ancho_qsaliente"
+                                        class="form-control mt-md-3" value="{{resultados.Ancho_qsaliente}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -511,8 +526,8 @@
                                     <label for="carga_hidraulicap" class="small mb-1">
                                         Carga hidraulica Hp (m)
                                     </label>
-                                    <input disabled name="carga_hidraulicap" id="carga_hidraulicap" class="form-control mt-md-3"
-                                        value="{{resultados.carga_hidraulicap}}">
+                                    <input disabled name="carga_hidraulicap" id="carga_hidraulicap"
+                                        class="form-control mt-md-3" value="{{resultados.carga_hidraulicap}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -520,8 +535,8 @@
                                     <label for="carga_hidraulicas" class="small mb-1">
                                         Carga hidráulica Hs (m)
                                     </label>
-                                    <input disabled name="carga_hidraulicas" id="carga_hidraulicas" class="form-control mt-md-3"
-                                        value="{{resultados.carga_hidraulicas}}">
+                                    <input disabled name="carga_hidraulicas" id="carga_hidraulicas"
+                                        class="form-control mt-md-3" value="{{resultados.carga_hidraulicas}}">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -575,22 +590,26 @@
                         <div class="form-row">
                             <div class="col-md-12">
                                 <p class="red mb-0"> <b>Condiciones de Diseño:</b></p>
-                                    <ul>
-                                        <li>
-                                            Froude < 0.45 <i class="fa fa-arrow-right" aria-hidden="true"></i> para garantizar flujo subcritico antes de la división de caudal
-                                        </li>
-                                        <li>
-                                            Si H1/H2 < 0.8 <i class="fa fa-arrow-right" aria-hidden="true"></i>	Existe flujo libre en el canal pasante
-                                        </li>
-                                        <li>
-                                            Si H1/H3 < 0.8 <i class="fa fa-arrow-right" aria-hidden="true"></i>	Existe flujo libre en el canal saliente
-                                        </li>
-                                        <li>
-                                            Si Hv < 0.3 <i class="fa fa-arrow-right" aria-hidden="true"></i> No es necesario determinar Lc y espesor del colchón amortiguador 
+                                <ul>
+                                    <li>
+                                        Froude < 0.45 <i class="fa fa-arrow-right" aria-hidden="true"></i> para
+                                            garantizar flujo subcritico antes de la división de caudal
+                                    </li>
+                                    <li>
+                                        Si H1/H2 < 0.8 <i class="fa fa-arrow-right" aria-hidden="true"></i> Existe flujo
+                                            libre en el canal pasante
+                                    </li>
+                                    <li>
+                                        Si H1/H3 < 0.8 <i class="fa fa-arrow-right" aria-hidden="true"></i> Existe flujo
+                                            libre en el canal saliente
+                                    </li>
+                                    <li>
+                                        Si Hv < 0.3 <i class="fa fa-arrow-right" aria-hidden="true"></i> No es necesario
+                                            determinar Lc y espesor del colchón amortiguador
                                             <!-- ya que Hv es menor a 0.3 cm -->
 
-                                        </li>
-                                    </ul>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -654,12 +673,26 @@
                 $(".movil").removeClass('d-none');
                 $(".fijo").addClass('d-none');
                 $("#cota_1").removeClass('mt-md-3');
+                $(".caudal").attr('min', '0.05');
+                $(".caudal").attr('max', '0.63');
+                $("#caudal_entrante").attr("placeholder", "[0.05≤Qe≤0.63]");
+                $("#caudal_pasante").attr("placeholder", "[0.05≤Qp≤0.63]");
+                $("#caudal_saliente").attr("placeholder", "[0.05≤Qs≤0.63]");
+                $(".caudal-error").text("Ingrese un valor de caudal mayor a 0.05 y menor o igual a 0.63 m³/s")
             } else {
                 $(".fijo").removeClass('d-none');
                 $(".movil").addClass('d-none');
                 $("#cota_1").addClass('mt-md-3');
+                $(".caudal").attr('min', '0.0001');
+                $(".caudal").attr('max', '0.5');
+                $(".caudal-error").text("Ingrese un valor de caudal mayor a cero y menor o igual a 0.5 m³/s")
+                $("#caudal_entrante").attr("placeholder", "Qe [≤ 0.5]");
+                $("#caudal_pasante").attr("placeholder", "Qp [≤ 0.5]");
+                $("#caudal_saliente").attr("placeholder", "Qs [≤ 0.5]");
             }
-            $(".perfil").removeClass('d-none')
+            $(".perfil").removeClass('d-none');
+            $(".oculto").removeClass('d-none');
+
         });
 
         $('#base_entrante').change(function () {
@@ -679,7 +712,7 @@
                 $(".rect").addClass('d-none');
                 $(".trape-input").attr('required', true);
             }
-            $(".oculto").removeClass('d-none')
+            $(".oculto_tipo").removeClass('d-none')
         });
     })
 </script>
@@ -690,7 +723,7 @@
     $(document).ready(function () {
         $(".oculto").removeClass('d-none');
         $(".perfil").removeClass('d-none');
-        
+
         var tipo = $('input[type=radio][name=tipo][checked]').val();
         var tipoPart = $('input[type=radio][name=tipoPart][checked]').val();
 
@@ -698,6 +731,12 @@
             $(".movil").removeClass('d-none');
             $(".movilR").removeClass('d-none');
             $(".fijo").addClass('d-none');
+            $(".caudal").attr('min', '0.05');
+            $(".caudal").attr('max', '0.63');
+            $(".caudal-error").text("Ingrese un valor de caudal mayor a 0.05 y menor o igual a 0.63 m³/s")
+            $("#caudal_entrante").attr("placeholder", "[0.05≤Qe≤0.63]");
+            $("#caudal_pasante").attr("placeholder", "[0.05≤Qp≤0.63]");
+            $("#caudal_saliente").attr("placeholder", "[0.05≤Qs≤0.63]");
 
             var b2 = $("#Ancho_qpasante").val();
             var b3 = $("#Ancho_qsaliente").val();
@@ -714,8 +753,14 @@
             $(".fijo").removeClass('d-none');
             $(".movil").addClass('d-none');
             $("#cota_1").addClass('mt-md-3');
+            $(".caudal").attr('min', '0.0001');
+            $(".caudal").attr('max', '0.5');
+            $(".caudal-error").text("Ingrese un valor de caudal mayor a cero y menor o igual a 0.5 m³/s")
+            $("#caudal_entrante").attr("placeholder", "Qe [≤ 0.5]");
+            $("#caudal_pasante").attr("placeholder", "Qp [≤ 0.5]");
+            $("#caudal_saliente").attr("placeholder", "Qs [≤ 0.5]");
         }
-        
+
         if (tipo == 'rectangular') {
             $(".rect").removeClass('d-none');
             $(".trape").addClass('d-none');
