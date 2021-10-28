@@ -1,6 +1,6 @@
 import math
 c=0.40
-C=1.6
+C=1.87
 
 ## Parámetros canal Rectangular:
 error = 0.000000001
@@ -97,7 +97,7 @@ def DisVertedero(y1,HdCalc, qCalc, bCalc, zCalc):
     Lt=round(qCalc/(qunitario/1000),3)
     L1= round((Lt-c)/2,3)  #A
     a=(T-c)/2 
-    L3=round(abs((bCalc-T)/2),3) #H
+    L3=round(((Lt - c - 2*L1)/2),3) #H
     Aa=a/L1
     Angulo= round(math.acos(Aa),3)
     Ang= math.degrees(Angulo)
@@ -117,23 +117,24 @@ def Cotas (caCalc,HdCalc, S):
     return ca, cb, cc, cd, L2
     
 def y2_Desnivelrec(Qv,nCalc,pendienteCalc,bCalc,y1,qCalc,HdCalc):
+    y2 = y1 - HdCalc
 ## tirante final y2 
-    cte = (Qv*nCalc) / (pendienteCalc**0.5)
-    yi = 1
-    y2 = 2
-    cont = 1
-    while abs(yi - y2) > error:
-        yi = y2
-        area = bCalc*yi 
-        perimetro = bCalc + 2*yi 
-        fy2 = (area**(5/3) / perimetro**(2/3)) - cte
-        d_area = bCalc 
-        d_perimetro = yi
-        dfy = (((5/3)*area**(2/3)/perimetro**(2/3))*d_area) - (((2/3)*area**(5/3) / perimetro**(5/3)) * d_perimetro)
-        y2 = round(yi - fy2/dfy,3)
-        cont += 1
-        if cont > 40:
-            break
+    # cte = (Qv*nCalc) / (pendienteCalc**0.5)
+    # yi = 1
+    # y2 = 2
+    # cont = 1
+    # while abs(yi - y2) > error:
+    #     yi = y2
+    #     area = bCalc*yi 
+    #     perimetro = bCalc + 2*yi 
+    #     fy2 = (area**(5/3) / perimetro**(2/3)) - cte
+    #     d_area = bCalc 
+    #     d_perimetro = yi
+    #     dfy = (((5/3)*area**(2/3)/perimetro**(2/3))*d_area) - (((2/3)*area**(5/3) / perimetro**(5/3)) * d_perimetro)
+    #     y2 = round(yi - fy2/dfy,3)
+    #     cont += 1
+    #     if cont > 40:
+    #         break
 
 ## Energía específica
     Energia1= y1+((qCalc**2)/(2*9.81*(bCalc*y1)**2))
